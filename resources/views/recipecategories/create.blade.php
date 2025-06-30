@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
-@section('title', 'Tambah Kategori Resep - Pazar Website Admin')
+@section('title', 'Add Recipe Category - Pazar Website Admin')
 
-@section('page-title', 'Tambah Kategori Resep')
+@section('page-title', 'Add Recipe Category')
 
 @section('content')
     <div class="mb-6">
@@ -10,7 +10,7 @@
             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
             </svg>
-            Kembali ke Daftar
+            Back to List
         </x-button>
     </div>
     
@@ -22,32 +22,32 @@
                 <div>
                     <x-form.input 
                         name="rc_title_id" 
-                        label="Judul (Indonesia)" 
-                        placeholder="Masukkan judul dalam Bahasa Indonesia" 
+                        label="Title (Indonesian)" 
+                        placeholder="Enter title in Indonesian" 
                         :value="old('rc_title_id')"
                         required
-                        helper="Maksimal 255 karakter"
+                        helper="Maximum 255 characters"
                     />
                 </div>
                 
                 <div>
                     <x-form.input 
                         name="rc_title_en" 
-                        label="Judul (Inggris)" 
-                        placeholder="Masukkan judul dalam Bahasa Inggris" 
+                        label="Title (English)" 
+                        placeholder="Enter title in English" 
                         :value="old('rc_title_en')"
                         required
-                        helper="Maksimal 255 karakter"
+                        helper="Maximum 255 characters"
                     />
                 </div>
             </div>
             
             <div class="flex justify-end mt-6 space-x-3">
                 <x-button type="button" href="{{ route('recipecategories.index') }}" variant="outline">
-                    Batal
+                    Cancel
                 </x-button>
                 <x-button type="submit" variant="primary">
-                    Simpan
+                    Save
                 </x-button>
             </div>
         </form>

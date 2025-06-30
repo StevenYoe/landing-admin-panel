@@ -94,7 +94,7 @@
                             <h4 class="text-sm font-medium text-gray-400">ID</h4>
                             <p>{{ $product['detail']['pd_id'] }}</p>
 
-                            <h4 class="text-sm font-medium text-gray-400 mb-2">Net Weight</h4>
+                            <h4 class="text-sm font-medium text-gray-400 mt-2">Net Weight</h4>
                             {!! nl2br(e($product['detail']['pd_net_weight'])) !!}
 
                             <h4 class="text-sm font-medium text-gray-400 mb-2">Long Description (English)</h4>
@@ -105,7 +105,7 @@
                             <h4 class="text-sm font-medium text-gray-400">ID Product</h4>
                             <p>{{ $product['detail']['pd_id_product'] }}</p>
 
-                            <h4 class="text-sm font-medium text-gray-400 mb-2">Long Description (Indonesia)</h4>
+                            <h4 class="text-sm font-medium text-gray-400 mt-2">Long Description (Indonesia)</h4>
                             {!! nl2br(e($product['detail']['pd_longdesc_id'])) !!}
                         </div>
                     </div>

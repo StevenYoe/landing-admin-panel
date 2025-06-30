@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
-@section('title', 'Tambah Why Pazar - Pazar Website Admin')
+@section('title', 'Add Why Pazar - Pazar Website Admin')
 
-@section('page-title', 'Tambah Why Pazar')
+@section('page-title', 'Add Why Pazar')
 
 @section('content')
     <div class="mb-6">
@@ -10,7 +10,7 @@
             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
             </svg>
-            Kembali ke Daftar
+            Back to List
         </x-button>
     </div>
     
@@ -22,8 +22,8 @@
                 <div>
                     <x-form.input 
                         name="w_title_id" 
-                        label="Judul (Indonesia)" 
-                        placeholder="Masukkan judul dalam Bahasa Indonesia" 
+                        label="Title (Indonesian)" 
+                        placeholder="Enter title in Indonesian" 
                         :value="old('w_title_id')"
                         required
                     />
@@ -32,8 +32,8 @@
                 <div>
                     <x-form.input 
                         name="w_title_en" 
-                        label="Judul (Inggris)" 
-                        placeholder="Masukkan judul dalam Bahasa Inggris" 
+                        label="Title (English)" 
+                        placeholder="Enter title in English" 
                         :value="old('w_title_en')"
                         required
                     />
@@ -42,8 +42,8 @@
                 <div>
                     <x-form.textarea 
                         name="w_description_id" 
-                        label="Deskripsi (Indonesia)" 
-                        placeholder="Masukkan deskripsi dalam Bahasa Indonesia" 
+                        label="Description (Indonesian)" 
+                        placeholder="Enter description in Indonesian" 
                         :value="old('w_description_id')"
                         rows="4"
                     />
@@ -52,31 +52,31 @@
                 <div>
                     <x-form.textarea 
                         name="w_description_en" 
-                        label="Deskripsi (Inggris)" 
-                        placeholder="Masukkan deskripsi dalam Bahasa Inggris" 
+                        label="Description (English)" 
+                        placeholder="Enter description in English" 
                         :value="old('w_description_en')"
                         rows="4"
                     />
                 </div>
                 
                 <div class="md:col-span-2">
-                    <label for="w_image" class="block text-sm font-medium mb-2">Gambar Why Pazar</label>
+                    <label for="w_image" class="block text-sm font-medium mb-2">Why Pazar Image</label>
                     <input type="file" name="w_image" id="w_image" accept="image/*"
                         class="block w-full text-sm text-gray-400 border border-gray-600 rounded-md 
                         file:mr-4 file:py-2 file:px-4 file:rounded-md
                         file:border-0 file:text-sm file:font-medium
                         file:bg-accent file:text-white
                         hover:file:bg-accent-dark">
-                    <p class="mt-1 text-xs text-gray-400">Upload JPG, PNG, or GIF (max 2MB)</p>
+                    <p class="mt-1 text-xs text-gray-400">Upload Webp, JPG, PNG, or GIF. <b>Preferred Webp</b> (max 5MB)</p>
                 </div>
             </div>
             
             <div class="flex justify-end mt-6 space-x-3">
                 <x-button type="button" href="{{ route('whypazars.index') }}" variant="outline">
-                    Batal
+                    Cancel
                 </x-button>
                 <x-button type="submit" variant="primary">
-                    Simpan
+                    Save
                 </x-button>
             </div>
         </form>

@@ -10,7 +10,7 @@
             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
             </svg>
-            Kembali ke Daftar
+            Back to List
         </x-button>
     </div>
     
@@ -23,8 +23,8 @@
                 <div>
                     <x-form.textarea 
                         name="h_title_id" 
-                        label="Judul (Indonesia)" 
-                        placeholder="Masukkan judul dalam Bahasa Indonesia" 
+                        label="Title (Indonesian)" 
+                        placeholder="Enter title in Indonesian" 
                         :value="old('h_title_id', $header['h_title_id'])"
                         required
                         rows="4"
@@ -34,8 +34,8 @@
                 <div>
                     <x-form.textarea 
                         name="h_title_en" 
-                        label="Judul (Inggris)" 
-                        placeholder="Masukkan judul dalam Bahasa Inggris" 
+                        label="Title (English)" 
+                        placeholder="Enter title in English" 
                         :value="old('h_title_en', $header['h_title_en'])"
                         required
                         rows="4"
@@ -45,47 +45,47 @@
                 <div class="md:col-span-2">
                     <x-form.input 
                         name="h_description_id" 
-                        label="Deskripsi (Indonesia)" 
-                        placeholder="Masukkan deskripsi dalam Bahasa Indonesia" 
+                        label="Description (Indonesian)" 
+                        placeholder="Enter description in Indonesian" 
                         :value="old('h_description_id', $header['h_description_id'])"
-                        helper="Maksimal 255 karakter"
+                        helper="Maximum 255 characters"
                     />
                 </div>
                 
                 <div class="md:col-span-2">
                     <x-form.input 
                         name="h_description_en" 
-                        label="Deskripsi (Inggris)" 
-                        placeholder="Masukkan deskripsi dalam Bahasa Inggris" 
+                        label="Description (English)" 
+                        placeholder="Enter description in English" 
                         :value="old('h_description_en', $header['h_description_en'])"
-                        helper="Maksimal 255 karakter"
+                        helper="Maximum 255 characters"
                     />
                 </div>
                 
                 <div>
                     <x-form.input 
                         name="h_page_name" 
-                        label="Nama Halaman" 
-                        placeholder="Masukkan Nama Halaman" 
+                        label="Page Name" 
+                        placeholder="Masukkan Page Name" 
                         :value="old('h_page_name', $header['h_page_name'])"
                         required
-                        helper="Maksimal 255 karakter"
+                        helper="Maximum 255 characters"
                     />
                 </div>
                 
                 <div class="md:col-span-2">
-                <label for="h_image" class="block text-sm font-medium mb-2">Gambar Header</label>
+                <label for="h_image" class="block text-sm font-medium mb-2">Header Image</label>
                     <input type="file" name="h_image" id="h_image" accept="image/*"
                         class="block w-full text-sm text-gray-400 border border-gray-600 rounded-md 
                         file:mr-4 file:py-2 file:px-4 file:rounded-md
                         file:border-0 file:text-sm file:font-medium
                         file:bg-accent file:text-white
                         hover:file:bg-accent-dark">
-                    <p class="mt-1 text-xs text-gray-400">Upload JPG, PNG, or GIF (max 2MB)</p>
+                    <p class="mt-1 text-xs text-gray-400">Upload Webp, JPG, PNG, or GIF. <b>Preferred Webp</b> (max 5MB)</p>
                     
                     @if(!empty($header['h_image']))
                         <div class="mt-2">
-                            <p class="text-sm text-gray-400 mb-2">Gambar Header Saat Ini:</p>
+                            <p class="text-sm text-gray-400 mb-2">Current Header Image:</p>
                             <img src="{{ $header['h_image'] }}" alt="Header Image" class="h-32 w-auto border border-gray-700 rounded-md">
                         </div>
                     @endif
@@ -94,10 +94,10 @@
             
             <div class="flex justify-end mt-6 space-x-3">
                 <x-button type="button" href="{{ route('headers.index') }}" variant="outline">
-                    Batal
+                    Cancel
                 </x-button>
                 <x-button type="submit" variant="primary">
-                    Perbarui
+                    Update
                 </x-button>
             </div>
         </form>

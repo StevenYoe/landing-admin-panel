@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
-@section('title', 'Profil Saya - Pazar Website Admin')
+@section('title', 'My Profile - Pazar Website Admin')
 
-@section('page-title', 'Profil Saya')
+@section('page-title', 'My Profile')
 
 @section('content')
     <x-card>
         <div class="mb-4">
-            <h2 class="text-xl font-semibold">Detail Profil</h2>
+            <h2 class="text-xl font-semibold">Profile Details</h2>
         </div>
         
         @if($user)
@@ -28,12 +28,12 @@
                 </div>
                     
                     <div class="mb-4">
-                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">ID Karyawan</p>
+                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Employee ID</p>
                         <p class="text-lg font-semibold">{{ $user['u_employee_id'] ?? 'N/A' }}</p>
                     </div>
                     
                     <div class="mb-4">
-                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Nama</p>
+                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Name</p>
                         <p class="text-lg font-semibold">{{ $user['u_name'] ?? 'N/A' }}</p>
                     </div>
                     
@@ -45,17 +45,17 @@
                 
                 <div>
                     <div class="mb-4">
-                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Divisi</p>
+                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Division</p>
                         <p class="text-lg font-semibold">{{ $user['division']['div_name'] ?? 'N/A' }}</p>
                     </div>
                     
                     <div class="mb-4">
-                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Jabatan</p>
+                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Position</p>
                         <p class="text-lg font-semibold">{{ $user['position']['pos_name'] ?? 'N/A' }}</p>
                     </div>
                     
                     <div class="mb-4">
-                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Tanggal Bergabung</p>
+                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Join Date</p>
                         <p class="text-lg font-semibold">{{ $user['u_join_date'] ? date('d F Y', strtotime($user['u_join_date'])) : 'N/A' }}</p>
                     </div>
                     
