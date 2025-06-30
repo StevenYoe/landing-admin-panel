@@ -37,27 +37,20 @@ class DashboardController extends BaseController
             'recipesByCategory' => $response['data']['recipes_by_category'] ?? []
         ];
 
-        // Add vacancy data only if user has access (superadmin or HR)
-        if ($this->hasHRAccess()) {
-            // Get vacancy statistics
-            $vacancyResponse = $this->crudApiGet('/vacancies/statistics');
-            
-            if (isset($vacancyResponse['success']) && $vacancyResponse['success']) {
-                $data['totalVacancies'] = $vacancyResponse['data']['total_vacancies'] ?? 0;
-                $data['activeVacancies'] = $vacancyResponse['data']['active_vacancies'] ?? 0;
-                $data['urgentVacancies'] = $vacancyResponse['data']['urgent_vacancies'] ?? 0;
-                $data['totalDepartments'] = $vacancyResponse['data']['total_departments'] ?? 0;
-                $data['totalEmployments'] = $vacancyResponse['data']['total_employments'] ?? 0;
-                $data['totalExperiences'] = $vacancyResponse['data']['total_experiences'] ?? 0;
-                $data['latestVacancies'] = $vacancyResponse['data']['latest_vacancies'] ?? [];
-                $data['vacanciesByDepartment'] = $vacancyResponse['data']['vacancies_by_department'] ?? [];
-            }
+        // Get vacancy statistics
+        $vacancyResponse = $this->crudApiGet('/vacancies/statistics');
+        
+        if (isset($vacancyResponse['success']) && $vacancyResponse['success']) {
+            $data['totalVacancies'] = $vacancyResponse['data']['total_vacancies'] ?? 0;
+            $data['activeVacancies'] = $vacancyResponse['data']['active_vacancies'] ?? 0;
+            $data['urgentVacancies'] = $vacancyResponse['data']['urgent_vacancies'] ?? 0;
+            $data['totalDepartments'] = $vacancyResponse['data']['total_departments'] ?? 0;
+            $data['totalEmployments'] = $vacancyResponse['data']['total_employments'] ?? 0;
+            $data['totalExperiences'] = $vacancyResponse['data']['total_experiences'] ?? 0;
+            $data['latestVacancies'] = $vacancyResponse['data']['latest_vacancies'] ?? [];
+            $data['vacanciesByDepartment'] = $vacancyResponse['data']['vacancies_by_department'] ?? [];
         }
 
-        // Add role-based access flags
-        $data['hasHRAccess'] = $this->hasHRAccess();
-        $data['hasContentAccess'] = $this->hasContentAccess();
-        $data['hasWriteAccess'] = $this->hasWriteAccess();
         $data['isSuperAdmin'] = $this->isSuperAdmin();
         
         return view('dashboard', $data);

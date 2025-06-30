@@ -53,9 +53,6 @@ Route::middleware([\App\Http\Middleware\ApiAuthentication::class])->group(functi
     
     // Profile
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
-
-    // Content management routes
-    Route::resource('contents', ContentController::class);
     
     // Pazar Website Management Routes
     // Headers

@@ -13,7 +13,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware) {
         //
         $middleware->alias([
-            'check.write.access' => \App\Http\Middleware\CheckWriteAccess::class,
+            
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
