@@ -4,16 +4,16 @@
 
 @section('content')
     @php
-        // Get user roles from the session and convert to lowercase.
         $userRoles = array_map('strtolower', (array)Session::get('roles', []));
-
-        // Define flags for easier checking.
+        // Use trim() here as well for robustness
+        $userDivision = strtolower(trim(Session::get('division', '')));
+        
         $isSuperAdmin = in_array('superadmin', $userRoles);
-        $isMarketing = in_array('marketing', $userRoles) || in_array('social media', $userRoles);
-        $isHR = in_array('human resources', $userRoles);
+        $isMarketingOrSocial = in_array($userDivision, ['marketing', 'social media']);
+        $isHumanResources = ($userDivision === 'human resources');
     @endphp
 
-    @if($isSuperAdmin || $isMarketing)
+    @if($isSuperAdmin || $isMarketingOrSocial)
         <!-- First Cards Row -->
         <div class="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
             <!-- Card 1: Total Certifications -->
@@ -194,7 +194,7 @@
         <hr class="my-8 border-gray-300">
     @endif
 
-    @if($isSuperAdmin || $isHR)
+    @if($isSuperAdmin || $isHumanResources)
         <!-- Vacancy Cards Row -->
         <div class="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4 mt-6">
             <!-- Card 1: Total Vacancies -->
@@ -306,7 +306,7 @@
         </div>
     @endif
 
-    @if($isSuperAdmin || $isMarketing)
+    @if($isSuperAdmin || $isMarketingOrSocial)
         <!-- Table Section -->
         <div class="grid grid-cols-1 gap-6 mt-6 lg:grid-cols-2">
             <!-- Table 1: Latest Products -->
@@ -448,7 +448,7 @@
             <hr class="my-8 border-gray-300">
         @endif
 
-        @if($isSuperAdmin || $isHR)
+        @if($isSuperAdmin || $isHumanResources)
         <div class="grid grid-cols-1 gap-6 mt-6 lg:grid-cols-2">
             <!-- Latest Vacancies Table -->
             <x-card>

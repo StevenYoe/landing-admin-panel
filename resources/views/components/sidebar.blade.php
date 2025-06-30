@@ -3,13 +3,13 @@
     class="fixed z-20 inset-y-0 left-0 mt-16 transition-all duration-300 transform h-full bg-bg-dark border-r border-gray-700 overflow-hidden">
     
     @php
-        // Get user roles from the session and convert to lowercase for reliable checks.
         $userRoles = array_map('strtolower', (array)Session::get('roles', []));
+        // Use trim() here as well for robustness
+        $userDivision = strtolower(trim(Session::get('division', '')));
         
-        // Define flags for easier checking in the template.
         $isSuperAdmin = in_array('superadmin', $userRoles);
-        $isMarketing = in_array('marketing', $userRoles) || in_array('social media', $userRoles);
-        $isHR = in_array('human resources', $userRoles);
+        $isMarketingOrSocial = in_array($userDivision, ['marketing', 'social media']);
+        $isHumanResources = ($userDivision === 'human resources');
     @endphp
     
     <div class="sidebar-content">
@@ -24,7 +24,7 @@
             </a>
             
             {{-- Menus for Superadmin, Marketing, and Social Media --}}
-            @if($isSuperAdmin || $isMarketing)
+            @if($isSuperAdmin || $isMarketingOrSocial)
                 <!-- Layout Menu with Submenu -->
                 <div x-data="{ open: false }" class="space-y-1">
                     <button @click="open = !open" class="flex items-center justify-between w-full p-2 rounded-lg hover:bg-gray-700 
@@ -232,7 +232,7 @@
                 </div>
             @endif
 
-            @if($isSuperAdmin || $isHR)
+            @if($isSuperAdmin || $isHumanResources)
                 <!-- Career Menu with Submenu -->
                 <div x-data="{ open: false }" class="space-y-1">
                     <button @click="open = !open" class="flex items-center justify-between w-full p-2 rounded-lg hover:bg-gray-700 {{ request()->routeIs('careerinfos.*') || request()->routeIs('workatpazars.*') ? 'bg-gray-700' : '' }}">

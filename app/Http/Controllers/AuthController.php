@@ -94,6 +94,13 @@ class AuthController extends BaseController
         Session::put('user', $response['data']['user']);
         Session::put('roles', $response['data']['roles'] ?? []);
 
+        // Ambil nama divisi dari data user yang dikirim API dan simpan ke session.
+        if (isset($response['data']['user']['division']['div_name'])) {
+            Session::put('division', $response['data']['user']['division']['div_name']);
+        } else {
+            Session::put('division', null); // Set null if division is not present
+        }
+
         // Add SweetAlert message
         Session::flash('swal_type', 'success');
         Session::flash('swal_title', 'Login Successful');
@@ -113,7 +120,7 @@ class AuthController extends BaseController
         $this->authApiPost('/logout');
 
         // Clear session data
-        Session::forget(['auth_token', 'user', 'roles']);
+        Session::forget(['auth_token', 'user', 'roles', 'division']);
 
         // Add SweetAlert message
         Session::flash('swal_type', 'success');

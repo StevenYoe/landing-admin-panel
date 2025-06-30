@@ -27,7 +27,6 @@ use App\Http\Controllers\WorkAtPazarController;
 use App\Http\Controllers\CareerInfoController;
 
 // Public Routes (Login)
-// Redirect root to dashboard
 Route::get('/', function () {
     return redirect()->route('login');
 });
@@ -39,11 +38,10 @@ Route::middleware([\App\Http\Middleware\ApiAuthentication::class])->group(functi
 
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     // GROUP 1: For Superadmin, Marketing, and Social Media
-    // Can access everything except Career/Vacancies related content
-    Route::middleware(['role:superadmin,marketing,social media'])->group(function () {
-        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::middleware('access:Marketing,Social Media')->group(function () {
         Route::resource('headers', HeaderController::class);
         Route::resource('footers', FooterController::class);
         Route::resource('popups', PopupController::class);
@@ -53,15 +51,15 @@ Route::middleware([\App\Http\Middleware\ApiAuthentication::class])->group(functi
         Route::get('/products/{productId}/details/create', [ProductDetailController::class, 'create'])->name('productdetails.create');
         Route::post('/products/{productId}/details', [ProductDetailController::class, 'store'])->name('productdetails.store');
         Route::get('/products/{productId}/details/edit', [ProductDetailController::class, 'edit'])->name('productdetails.edit');
-        Route::put('/products/{productId}/details', [ProductDetailController::class, 'update'])->name('productdetails.update');
+        Route::put('/products/{productDetailId}', [ProductDetailController::class, 'update'])->name('productdetails.update');
         Route::resource('certifications', CertificationController::class);
         Route::resource('recipecategories', RecipeCategoryController::class);
         Route::resource('recipes', RecipeController::class);
         Route::get('/recipes/category/{categoryId}', [RecipeController::class, 'getByCategory'])->name('recipes.by-category');
         Route::get('/recipes/{recipeId}/details/create', [RecipeDetailController::class, 'create'])->name('recipedetails.create');
         Route::post('/recipes/{recipeId}/details', [RecipeDetailController::class, 'store'])->name('recipedetails.store');
-        Route::get('/recipes/{recipeId}/details/edit', [RecipeDetailController::class, 'edit'])->name('recipedetails.edit');
-        Route::put('/recipes/{recipeId}/details', [RecipeDetailController::class, 'update'])->name('recipedetails.update');
+        Route::get('/recipes/{recipeDetailId}/edit', [RecipeDetailController::class, 'edit'])->name('recipedetails.edit');
+        Route::put('/recipedetails/{id}', [RecipeDetailController::class, 'update'])->name('recipedetails.update');
         Route::delete('/recipes/{recipeId}/details/{id}', [RecipeDetailController::class, 'destroy'])->name('recipedetails.destroy');
         Route::resource('histories', HistoryController::class);
         Route::resource('companyprofiles', CompanyProfileController::class);
@@ -72,8 +70,7 @@ Route::middleware([\App\Http\Middleware\ApiAuthentication::class])->group(functi
     });
 
     // GROUP 2: For Superadmin and Human Resources
-    // Can only access Career/Vacancies related content
-    Route::middleware(['role:superadmin,human resources'])->group(function () {
+    Route::middleware('access:Human Resources')->group(function () {
         Route::resource('departments', DepartmentController::class);
         Route::resource('employments', EmploymentController::class);
         Route::resource('experiences', ExperienceController::class);
