@@ -160,16 +160,14 @@ class VacancyController extends BaseController
             'v_requirement_en' => 'required|string',
             'v_responsibilities_id' => 'required|string',
             'v_responsibilities_en' => 'required|string',
-            'v_closed_date' => 'nullable|date|after_or_equal:today',
+            'v_posted_date' => 'required|date', // Now required
+            'v_closed_date' => 'required|date|after_or_equal:v_posted_date', // Now required
             'v_urgent' => 'nullable',
             'v_is_active' => 'nullable',
         ]);
         
         // Prepare data for API
         $data = $validated;
-        
-        // Set posted date to today
-        $data['v_posted_date'] = now()->format('Y-m-d');
         
         // Handle checkbox values - convert to boolean
         $data['v_urgent'] = $request->has('v_urgent') ? true : false;
@@ -299,7 +297,8 @@ class VacancyController extends BaseController
             'v_requirement_en' => 'required|string',
             'v_responsibilities_id' => 'required|string',
             'v_responsibilities_en' => 'required|string',
-            'v_closed_date' => 'nullable|date',
+            'v_posted_date' => 'nullable|date', // Optional in edit
+            'v_closed_date' => 'required|date|after_or_equal:v_posted_date', // Required
             'v_urgent' => 'nullable',
             'v_is_active' => 'nullable',
         ]);
@@ -311,8 +310,12 @@ class VacancyController extends BaseController
         $data['v_urgent'] = $request->has('v_urgent') ? true : false;
         $data['v_is_active'] = $request->has('v_is_active') ? true : false;
         
-        // Preserve the original posted date from existing data
-        $data['v_posted_date'] = $existingVacancy['v_posted_date'] ?? now()->format('Y-m-d');
+        // Update the posted_date handling
+        if ($request->has('v_posted_date') && !empty($request->v_posted_date)) {
+            $data['v_posted_date'] = $request->v_posted_date;
+        } else {
+            $data['v_posted_date'] = $existingVacancy['v_posted_date'] ?? now()->format('Y-m-d');
+        }
         
         // Add user information
         if (auth()->check()) {

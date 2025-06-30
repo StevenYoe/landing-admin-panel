@@ -82,12 +82,24 @@
                 </div>
                 
                 <div>
-                    <x-form.input 
-                        type="date" 
-                        name="v_closed_date" 
-                        label="Closing Date (Optional)" 
+                    <x-form.input
+                        type="date"
+                        name="v_posted_date"
+                        label="Posted Date"
+                        :value="old('v_posted_date', date('Y-m-d'))"
+                        required
+                        helper="Date when the vacancy is posted"
+                    />
+                </div>
+                <div>
+                    <x-form.input
+                        type="date"
+                        name="v_closed_date"
+                        label="Closing Date"
                         :value="old('v_closed_date')"
-                        min="{{ date('Y-m-d') }}"
+                        :min="date('Y-m-d')"
+                        required
+                        helper="Application deadline (required)"
                     />
                 </div>
                 

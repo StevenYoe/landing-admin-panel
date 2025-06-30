@@ -83,11 +83,22 @@
                 </div>
                 
                 <div>
-                    <x-form.input 
-                        type="date" 
-                        name="v_closed_date" 
-                        label="Closing Date (Optional)" 
+                    <x-form.input
+                        type="date"
+                        name="v_posted_date"
+                        label="Posted Date (Optional)"
+                        :value="old('v_posted_date', !empty($vacancy['v_posted_date']) ? date('Y-m-d', strtotime($vacancy['v_posted_date'])) : '')"
+                        helper="Leave empty to keep existing date"
+                    />
+                </div>
+                <div>
+                    <x-form.input
+                        type="date"
+                        name="v_closed_date"
+                        label="Closing Date"
                         :value="old('v_closed_date', !empty($vacancy['v_closed_date']) ? date('Y-m-d', strtotime($vacancy['v_closed_date'])) : '')"
+                        required
+                        helper="Application deadline (required)"
                     />
                 </div>
                 
