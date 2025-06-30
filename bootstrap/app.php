@@ -11,9 +11,10 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //
+        // Register the 'role' alias for the newly created middleware
         $middleware->alias([
-            
+            'role' => \App\Http\Middleware\CheckRole::class,
+            // add other aliases here if needed
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
