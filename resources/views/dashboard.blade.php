@@ -189,11 +189,6 @@
         </div>
     @endif
 
-    {{-- Divider for Superadmin View --}}
-    @if($isSuperAdmin)
-        <hr class="my-8 border-gray-300">
-    @endif
-
     @if($isSuperAdmin || $isHumanResources)
         <!-- Vacancy Cards Row -->
         <div class="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4 mt-6">
@@ -441,11 +436,6 @@
                 </div>
             </x-card>
         </div>
-        @endif
-
-        {{-- Divider for Superadmin View --}}
-        @if($isSuperAdmin)
-            <hr class="my-8 border-gray-300">
         @endif
 
         @if($isSuperAdmin || $isHumanResources)

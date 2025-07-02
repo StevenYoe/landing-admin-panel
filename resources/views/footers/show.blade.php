@@ -49,17 +49,6 @@
                     </div>
                     
                     <div>
-                        <h4 class="text-sm font-medium text-gray-400">Icon</h4>
-                        <p>
-                            @if($footer['f_icon'])
-                                <i class="{{ $footer['f_icon'] }}"></i> {{ $footer['f_icon'] }}
-                            @else
-                                -
-                            @endif
-                        </p>
-                    </div>
-                    
-                    <div>
                         <h4 class="text-sm font-medium text-gray-400">Link</h4>
                         <p>
                             @if($footer['f_link'])
@@ -101,7 +90,7 @@
                     @if(!empty($footer['f_icon']))
                         <img src="{{ $footer['f_icon'] }}"  class="w-full rounded-md"></img>
                     @else
-                        <p class="text-gray-400">No image available</p>
+                        <p class="text-gray-400">No icon available</p>
                     @endif
             </x-card>
         </div>
