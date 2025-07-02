@@ -1,12 +1,22 @@
+<!--
+    Sidebar Component (sidebar.blade.php)
+    ------------------------------------------------
+    This Blade component renders the main sidebar navigation for the admin panel.
+    - Uses Alpine.js for sidebar open/close transitions and submenu toggling.
+    - Dynamically displays menu items and submenus based on user roles and division from session.
+    - Provides navigation links to dashboard, layout, index, company, brand, product, recipe, career, vacancies, and profile sections.
+    - Highlights the active menu item based on the current route.
+    - Uses Tailwind CSS classes for styling and dark mode support.
+-->
+
 <aside 
     :class="sidebarOpen ? 'translate-x-0 w-64' : 'w-0 -translate-x-full'"
     class="fixed z-20 inset-y-0 left-0 mt-16 transition-all duration-300 transform h-full bg-bg-dark border-r border-gray-700 overflow-hidden">
     
     @php
+        // Get user roles and division from session for menu visibility logic
         $userRoles = array_map('strtolower', (array)Session::get('roles', []));
-        // Use trim() here as well for robustness
         $userDivision = strtolower(trim(Session::get('division', '')));
-        
         $isSuperAdmin = in_array('superadmin', $userRoles);
         $isMarketingOrSocial = in_array($userDivision, ['marketing', 'social media']);
         $isHumanResources = ($userDivision === 'human resources');
@@ -14,7 +24,7 @@
     
     <div class="sidebar-content">
         <nav class="p-4 space-y-2 overflow-y-auto h-full">
-            <!-- Dashboard -->
+            <!-- Dashboard link -->
             <a href="{{ route('dashboard') }}" class="flex items-center p-2 rounded-lg hover:bg-gray-700 
                     {{ request()->routeIs('dashboard') ? 'bg-gray-700' : '' }}">
                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -23,7 +33,7 @@
                 <span :class="sidebarOpen ? 'opacity-100' : 'opacity-0'">Dashboard</span>
             </a>
             
-            {{-- Menus for Superadmin, Marketing, and Social Media --}}
+            <!-- Conditional menus for Superadmin, Marketing, Social Media -->
             @if($isSuperAdmin || $isMarketingOrSocial)
                 <!-- Layout Menu with Submenu -->
                 <div x-data="{ open: false }" class="space-y-1">
@@ -310,7 +320,7 @@
                 </div>
             @endif
 
-            <!-- My Profile Link (previously Profile Saya) -->
+            <!-- My Profile link -->
             <a href="{{ route('profile') }}" class="flex items-center p-2 rounded-lg hover:bg-gray-700 
                     {{ request()->routeIs('profile') ? 'bg-gray-700' : '' }}">
                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

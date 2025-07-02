@@ -1,4 +1,7 @@
 <?php
+// WorkAtPazarController manages CRUD operations for "work at pazar" items.
+// It handles listing, creating, updating, showing, and deleting records via the CRUD API.
+// Also manages filtering by type and error handling for each operation.
 
 namespace App\Http\Controllers;
 
@@ -10,6 +13,7 @@ class WorkAtPazarController extends BaseController
 {
     /**
      * Display a listing of the work at pazar items.
+     * Handles sorting, pagination, and fetches data from the CRUD API.
      *
      * @return \Illuminate\View\View
      */
@@ -67,6 +71,7 @@ class WorkAtPazarController extends BaseController
 
     /**
      * Store a newly created work at pazar item in storage.
+     * Validates input and sends data to the CRUD API.
      *
      * @param  Request  $request
      * @return \Illuminate\Http\RedirectResponse
@@ -99,6 +104,7 @@ class WorkAtPazarController extends BaseController
 
     /**
      * Display the specified work at pazar item.
+     * Fetches a single record for display.
      *
      * @param  int  $id
      * @return \Illuminate\View\View
@@ -119,6 +125,7 @@ class WorkAtPazarController extends BaseController
 
     /**
      * Show the form for editing the specified work at pazar item.
+     * Fetches the record for editing.
      *
      * @param  int  $id
      * @return \Illuminate\View\View
@@ -139,6 +146,7 @@ class WorkAtPazarController extends BaseController
 
     /**
      * Update the specified work at pazar item in storage.
+     * Validates input and updates the record via the CRUD API.
      *
      * @param  Request  $request
      * @param  int  $id
@@ -172,6 +180,7 @@ class WorkAtPazarController extends BaseController
 
     /**
      * Remove the specified work at pazar item from storage.
+     * Deletes the record via the CRUD API and handles the response.
      *
      * @param  int  $id
      * @return \Illuminate\Http\RedirectResponse
@@ -191,6 +200,7 @@ class WorkAtPazarController extends BaseController
     
     /**
      * Show work at pazar items based on type.
+     * Fetches items by type for display.
      *
      * @param string $type
      * @return \Illuminate\View\View

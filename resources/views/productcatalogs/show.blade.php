@@ -1,3 +1,8 @@
+<!--
+    Product Catalog Details Page
+    This Blade view displays detailed information about a specific product catalog in the admin panel.
+    Includes catalog info, file download links, quick actions, and metadata.
+-->
 @extends('layouts.app')
 
 @section('title', 'Product Catalog Details - Pazar Website Admin')
@@ -5,6 +10,9 @@
 @section('page-title', 'Product Catalog Details')
 
 @section('content')
+    <!--
+        Header section: Back to List button and action buttons (Edit, Delete) for the product catalog.
+    -->
     <div class="mb-6 flex justify-between items-center">
         <x-button href="{{ route('productcatalogs.index') }}" variant="outline">
             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -12,15 +20,15 @@
             </svg>
             Back to List
         </x-button>
-        
         <div class="flex justify-center space-x-2">
+            <!-- Edit button: Navigates to the product catalog edit page -->
             <x-button href="{{ route('productcatalogs.edit', $catalog['pct_id']) }}" variant="primary">
                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
                 </svg>
                 Edit
             </x-button>
-            
+            <!-- Delete button: Submits a form to delete the product catalog (with confirmation) -->
             <form action="{{ route('productcatalogs.destroy', $catalog['pct_id']) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this product catalog?');">
                 @csrf
                 @method('DELETE')
@@ -33,9 +41,14 @@
             </form>
         </div>
     </div>
-    
+    <!--
+        Main content: Two-column layout with catalog information, files, quick actions, and metadata.
+    -->
     <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
         <div class="lg:col-span-2">
+            <!--
+                Card with catalog information: ID and other details.
+            -->
             <x-card title="Catalog Information">
                 <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
                     <div>
@@ -44,7 +57,10 @@
                     </div>
                 </div>
             </x-card>
-            
+            <!--
+                Card with catalog files: Shows download/view links for Indonesian and English catalog files if available.
+                If no files are available, shows a message and upload button.
+            -->
             <x-card title="Catalog Files" class="mt-6">
                 <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
                     <div>
@@ -75,7 +91,6 @@
                             </div>
                         @endif
                     </div>
-                    
                     <div>
                         <h4 class="text-sm font-medium text-gray-400 mb-4">English Catalog</h4>
                         @if(!empty($catalog['pct_catalog_en']))
@@ -105,7 +120,9 @@
                         @endif
                     </div>
                 </div>
-                
+                <!--
+                    If both catalog files are missing, show a message and upload button.
+                -->
                 @if(empty($catalog['pct_catalog_id']) && empty($catalog['pct_catalog_en']))
                     <div class="text-center py-6 mt-6 border-t border-gray-700">
                         <p class="text-gray-400 mb-4">No catalog files available.</p>
@@ -119,8 +136,10 @@
                 @endif
             </x-card>
         </div>
-        
         <div class="lg:col-span-1">
+            <!--
+                Card with quick actions: Download links for catalog files if available.
+            -->
             <x-card title="Quick Actions">
                 <div class="space-y-3">
                     @if(!empty($catalog['pct_catalog_id']))
@@ -131,7 +150,6 @@
                             Download ID Catalog
                         </a>
                     @endif
-                    
                     @if(!empty($catalog['pct_catalog_en']))
                         <a href="{{ $catalog['pct_catalog_en'] }}" target="_blank" class="w-full inline-flex items-center justify-center px-4 py-2 bg-green-600 bg-opacity-20 hover:bg-opacity-30 rounded-md text-green-400 transition-colors">
                             <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -142,14 +160,15 @@
                     @endif
                 </div>
             </x-card>
-            
+            <!--
+                Card with metadata: Shows created/updated dates and users.
+            -->
             <x-card title="Metadata" class="mt-6">
                 <div class="text-sm">
                     <div class="flex justify-between py-2 border-b border-gray-700">
                         <span class="text-gray-400">Created at</span>
                         <span>{{ isset($catalog['pct_created_at']) ? date('d M Y H:i', strtotime($catalog['pct_created_at'])) : '-' }}</span>
                     </div>
-                    
                     <div class="flex justify-between py-2 border-b border-gray-700">
                         <span class="text-gray-400">Created by</span>
                         <span>
@@ -160,12 +179,10 @@
                             @endif
                         </span>
                     </div>
-                    
                     <div class="flex justify-between py-2 border-b border-gray-700">
                         <span class="text-gray-400">Updated at</span>
                         <span>{{ isset($catalog['pct_updated_at']) ? date('d M Y H:i', strtotime($catalog['pct_updated_at'])) : '-' }}</span>
                     </div>
-                    
                     <div class="flex justify-between py-2 border-b border-gray-700">
                         <span class="text-gray-400">Updated by</span>
                         <span>

@@ -1,3 +1,13 @@
+<!--
+    Login Page View (login.blade.php)
+    ----------------------------------
+    This Blade template renders the login form for the Pazar Website Admin panel.
+    - Extends the 'layouts.auth' layout for consistent authentication page styling.
+    - Displays validation errors if present.
+    - Contains a form for user email and password input, posting to the login route.
+    - Uses Tailwind CSS classes for styling.
+-->
+
 @extends('layouts.auth')
 
 @section('title', 'Login - Pazar Website Admin')
@@ -9,6 +19,7 @@
             <h1 class="text-2xl font-bold text-gray-custom">Pazar Website Login</h1>
         </div>
 
+        <!-- Display validation errors if any exist -->
         @if ($errors->any())
             <div class="p-4 mb-6 text-red-100 bg-red-800 border-l-4 border-red-500" role="alert">
                 <ul>
@@ -19,6 +30,7 @@
             </div>
         @endif
 
+        <!-- Login form: posts email and password to the login route -->
         <form method="POST" action="{{ route('login.post') }}">
             @csrf
             <div class="mb-4">

@@ -1,4 +1,7 @@
 <?php
+// ProductController manages CRUD operations for products.
+// It handles listing, creating, updating, showing, and deleting product records via the CRUD API.
+// Also manages file uploads for product images, category filtering, and transforms image paths to full URLs for display.
 
 namespace App\Http\Controllers;
 
@@ -10,6 +13,7 @@ class ProductController extends BaseController
 {
     /**
      * Display a listing of the products.
+     * Handles sorting, pagination, category filtering, and image path transformation.
      *
      * @return \Illuminate\View\View
      */
@@ -86,6 +90,7 @@ class ProductController extends BaseController
 
     /**
      * Show the form for creating a new product.
+     * Fetches categories for the dropdown.
      *
      * @return \Illuminate\View\View
      */
@@ -104,6 +109,7 @@ class ProductController extends BaseController
 
     /**
      * Store a newly created product in storage.
+     * Validates input, handles file upload, and sends data to the CRUD API.
      *
      * @param  Request  $request
      * @return \Illuminate\Http\RedirectResponse
@@ -143,6 +149,7 @@ class ProductController extends BaseController
 
     /**
      * Display the specified product.
+     * Fetches a single product record, transforms its image path, and processes category data.
      *
      * @param  int  $id
      * @return \Illuminate\View\View
@@ -175,6 +182,7 @@ class ProductController extends BaseController
 
     /**
      * Show the form for editing the specified product.
+     * Fetches the record and categories for editing, transforms image path.
      *
      * @param  int  $id
      * @return \Illuminate\View\View
@@ -207,6 +215,7 @@ class ProductController extends BaseController
 
     /**
      * Update the specified product in storage.
+     * Validates input, handles file upload, and updates the record via the CRUD API.
      *
      * @param  Request  $request
      * @param  int  $id
@@ -247,6 +256,7 @@ class ProductController extends BaseController
 
     /**
      * Remove the specified product from storage.
+     * Deletes the record via the CRUD API and handles the response.
      *
      * @param  int  $id
      * @return \Illuminate\Http\RedirectResponse

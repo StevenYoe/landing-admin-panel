@@ -1,4 +1,7 @@
 <?php
+// CheckAccess middleware restricts access to certain routes based on user division or role.
+// Superadmins always have access. Other users must belong to one of the allowed divisions specified for the route.
+// If access is denied, a SweetAlert error message is flashed and the user is redirected to the dashboard.
 
 namespace App\Http\Middleware;
 
@@ -9,6 +12,15 @@ use Symfony\Component\HttpFoundation\Response;
 
 class CheckAccess
 {
+    /**
+     * Handle an incoming request.
+     * Checks if the user is a superadmin or belongs to an allowed division.
+     *
+     * @param  Request  $request
+     * @param  Closure  $next
+     * @param  mixed ...$divisions  Allowed divisions for the route
+     * @return Response
+     */
     public function handle(Request $request, Closure $next, ...$divisions): Response
     {
         $userRoles = array_map('strtolower', (array)Session::get('roles', []));

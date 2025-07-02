@@ -1,4 +1,6 @@
 <?php
+// DepartmentController manages CRUD operations for departments.
+// It handles listing, creating, updating, showing, and deleting department records via the CRUD API.
 
 namespace App\Http\Controllers;
 
@@ -9,6 +11,7 @@ class DepartmentController extends BaseController
 {
     /**
      * Display a listing of the departments.
+     * Handles sorting and pagination.
      *
      * @return \Illuminate\View\View
      */
@@ -66,6 +69,7 @@ class DepartmentController extends BaseController
     
     /**
      * Store a newly created department in storage.
+     * Validates input and sends data to the CRUD API.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse
@@ -93,6 +97,7 @@ class DepartmentController extends BaseController
     
     /**
      * Display the specified department.
+     * Fetches a single department record.
      *
      * @param  int  $id
      * @return \Illuminate\View\View
@@ -113,6 +118,7 @@ class DepartmentController extends BaseController
     
     /**
      * Show the form for editing the specified department.
+     * Fetches the record for editing.
      *
      * @param  int  $id
      * @return \Illuminate\View\View
@@ -133,6 +139,7 @@ class DepartmentController extends BaseController
     
     /**
      * Update the specified department in storage.
+     * Validates input and updates the record via the CRUD API.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -161,6 +168,7 @@ class DepartmentController extends BaseController
     
     /**
      * Remove the specified department from storage.
+     * Deletes the record via the CRUD API and handles the response.
      *
      * @param  int  $id
      * @return \Illuminate\Http\RedirectResponse

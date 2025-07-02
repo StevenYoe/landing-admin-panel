@@ -1,4 +1,7 @@
 <?php
+// ProductCatalogController manages CRUD operations for product catalogs.
+// It handles listing, creating, updating, showing, and deleting product catalog records via the CRUD API.
+// Also manages file uploads for catalog files and transforms file paths to full URLs for display.
 
 namespace App\Http\Controllers;
 
@@ -10,6 +13,7 @@ class ProductCatalogController extends BaseController
 {
     /**
      * Display a listing of the product catalogs.
+     * Handles sorting, pagination, and file path transformation.
      *
      * @return \Illuminate\View\View
      */
@@ -77,6 +81,7 @@ class ProductCatalogController extends BaseController
 
     /**
      * Store a newly created product catalog in storage.
+     * Validates input, handles file uploads, and sends data to the CRUD API.
      *
      * @param  Request  $request
      * @return \Illuminate\Http\RedirectResponse
@@ -116,6 +121,7 @@ class ProductCatalogController extends BaseController
 
     /**
      * Display the specified product catalog.
+     * Fetches a single product catalog record and transforms file paths.
      *
      * @param  int  $id
      * @return \Illuminate\View\View
@@ -144,6 +150,7 @@ class ProductCatalogController extends BaseController
 
     /**
      * Show the form for editing the specified product catalog.
+     * Fetches the record and transforms file paths for editing.
      *
      * @param  int  $id
      * @return \Illuminate\View\View
@@ -172,6 +179,7 @@ class ProductCatalogController extends BaseController
 
     /**
      * Update the specified product catalog in storage.
+     * Validates input, handles file uploads, and updates the record via the CRUD API.
      *
      * @param  Request  $request
      * @param  int  $id
@@ -212,6 +220,7 @@ class ProductCatalogController extends BaseController
 
     /**
      * Remove the specified product catalog from storage.
+     * Deletes the record via the CRUD API and handles the response.
      *
      * @param  int  $id
      * @return \Illuminate\Http\RedirectResponse

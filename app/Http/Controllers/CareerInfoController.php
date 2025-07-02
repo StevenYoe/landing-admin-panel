@@ -1,4 +1,6 @@
 <?php
+// CareerInfoController manages CRUD operations for career info items.
+// It handles listing, creating, updating, showing, and deleting career info records via the CRUD API.
 
 namespace App\Http\Controllers;
 
@@ -10,6 +12,7 @@ class CareerInfoController extends BaseController
 {
     /**
      * Display a listing of the career info items.
+     * Handles sorting, pagination, and image path transformation.
      *
      * @return \Illuminate\View\View
      */
@@ -74,6 +77,7 @@ class CareerInfoController extends BaseController
 
     /**
      * Store a newly created career info item in storage.
+     * Validates input, handles file upload, and sends data to the CRUD API.
      *
      * @param  Request  $request
      * @return \Illuminate\Http\RedirectResponse
@@ -111,6 +115,7 @@ class CareerInfoController extends BaseController
 
     /**
      * Display the specified career info item.
+     * Fetches a single career info record and transforms its image path.
      *
      * @param  int  $id
      * @return \Illuminate\View\View
@@ -136,6 +141,7 @@ class CareerInfoController extends BaseController
 
     /**
      * Show the form for editing the specified career info item.
+     * Fetches the record and transforms its image path for editing.
      *
      * @param  int  $id
      * @return \Illuminate\View\View
@@ -161,6 +167,7 @@ class CareerInfoController extends BaseController
 
     /**
      * Update the specified career info item in storage.
+     * Validates input, handles file upload, and updates the record via the CRUD API.
      *
      * @param  Request  $request
      * @param  int  $id
@@ -199,6 +206,7 @@ class CareerInfoController extends BaseController
 
     /**
      * Remove the specified career info item from storage.
+     * Deletes the record via the CRUD API and handles the response.
      *
      * @param  int  $id
      * @return \Illuminate\Http\RedirectResponse

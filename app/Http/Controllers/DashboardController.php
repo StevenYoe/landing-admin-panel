@@ -1,4 +1,6 @@
 <?php
+// DashboardController handles the logic for displaying the main dashboard page.
+// It retrieves statistics and summary data for products, recipes, vacancies, and other entities via the CRUD API.
 
 namespace App\Http\Controllers;
 
@@ -6,6 +8,11 @@ use Illuminate\Http\Request;
 
 class DashboardController extends BaseController
 {
+    /**
+     * Display the dashboard with statistics and summary data.
+     *
+     * @return \Illuminate\View\View
+     */
     public function index()
     {
         // Use CRUD API to get dashboard statistics

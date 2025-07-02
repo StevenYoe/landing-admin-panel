@@ -1,4 +1,7 @@
 <?php
+// WhyPazarController manages CRUD operations for "why pazar" items.
+// It handles listing, creating, updating, showing, and deleting records via the CRUD API.
+// Also manages file uploads for images, image path transformation, and error handling for each operation.
 
 namespace App\Http\Controllers;
 
@@ -10,6 +13,7 @@ class WhyPazarController extends BaseController
 {
     /**
      * Display a listing of the why pazar items.
+     * Handles sorting, pagination, and image path transformation.
      *
      * @return \Illuminate\View\View
      */
@@ -74,6 +78,7 @@ class WhyPazarController extends BaseController
 
     /**
      * Store a newly created why pazar item in storage.
+     * Validates input, handles file upload, and sends data to the CRUD API.
      *
      * @param  Request  $request
      * @return \Illuminate\Http\RedirectResponse
@@ -111,6 +116,7 @@ class WhyPazarController extends BaseController
 
     /**
      * Display the specified why pazar item.
+     * Fetches a single record and transforms its image path.
      *
      * @param  int  $id
      * @return \Illuminate\View\View
@@ -136,6 +142,7 @@ class WhyPazarController extends BaseController
 
     /**
      * Show the form for editing the specified why pazar item.
+     * Fetches the record and transforms its image path for editing.
      *
      * @param  int  $id
      * @return \Illuminate\View\View
@@ -161,6 +168,7 @@ class WhyPazarController extends BaseController
 
     /**
      * Update the specified why pazar item in storage.
+     * Validates input, handles file upload, and updates the record via the CRUD API.
      *
      * @param  Request  $request
      * @param  int  $id
@@ -206,6 +214,7 @@ class WhyPazarController extends BaseController
 
     /**
      * Remove the specified why pazar item from storage.
+     * Deletes the record via the CRUD API and handles the response.
      *
      * @param  int  $id
      * @return \Illuminate\Http\RedirectResponse

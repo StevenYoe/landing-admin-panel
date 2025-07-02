@@ -1,3 +1,8 @@
+<!--
+    Edit History Page
+    This Blade view provides a form to edit an existing history entry in the system.
+    Each section and component is commented to explain its purpose and logic.
+-->
 @extends('layouts.app')
 
 @section('title', 'Edit History - Pazar Website Admin')
@@ -5,6 +10,7 @@
 @section('page-title', 'Edit History')
 
 @section('content')
+    <!-- Header section with Back to List button -->
     <div class="mb-6">
         <x-button href="{{ route('histories.index') }}" variant="outline">
             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -14,13 +20,17 @@
         </x-button>
     </div>
     
+    <!-- Card component containing the history edit form -->
     <x-card>
+        <!-- Form to update existing history data, including file upload -->
         <form action="{{ route('histories.update', $history['hs_id']) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             
+            <!-- Input fields for year, descriptions, and image -->
             <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
                 <div class="md:col-span-2">
+                    <!-- Input for year -->
                     <x-form.input 
                         name="hs_year" 
                         label="Year" 
@@ -32,6 +42,7 @@
                 </div>
                 
                 <div>
+                    <!-- Textarea for description in Indonesian -->
                     <x-form.textarea 
                         name="hs_description_id" 
                         label="Description (Indonesian)" 
@@ -43,6 +54,7 @@
                 </div>
                 
                 <div>
+                    <!-- Textarea for description in English -->
                     <x-form.textarea 
                         name="hs_description_en" 
                         label="Description (English)" 
@@ -54,6 +66,7 @@
                 </div>
                 
                 <div class="md:col-span-2">
+                    <!-- File input for history image (Webp, JPG, PNG, GIF) -->
                     <label for="hs_image" class="block text-sm font-medium mb-2">History Image</label>
                     <input type="file" name="hs_image" id="hs_image" accept="image/*"
                         class="block w-full text-sm text-gray-400 border border-gray-600 rounded-md 
@@ -62,7 +75,7 @@
                         file:bg-accent file:text-white
                         hover:file:bg-accent-dark">
                     <p class="mt-1 text-xs text-gray-400">Upload Webp, JPG, PNG, or GIF. <b>Preferred Webp</b> (max 5MB)</p>
-                    
+                    <!-- Display current history image if available -->
                     @if(!empty($history['hs_image']))
                         <div class="mt-2">
                             <p class="text-sm text-gray-400 mb-2">Current History Image:</p>
@@ -72,10 +85,13 @@
                 </div>
             </div>
             
+            <!-- Action buttons: Cancel and Update -->
             <div class="flex justify-end mt-6 space-x-3">
+                <!-- Cancel button returns to history list -->
                 <x-button type="button" href="{{ route('histories.index') }}" variant="outline">
                     Cancel
                 </x-button>
+                <!-- Update button submits the form -->
                 <x-button type="submit" variant="primary">
                     Update
                 </x-button>

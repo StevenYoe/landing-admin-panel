@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
+// AuthController handles authentication-related actions such as login, logout, and profile retrieval.
 class AuthController extends BaseController
 {
     /**
      * Show login form
      *
      * @return \Illuminate\View\View
+     * Shows the login form and flashes a welcome message if not already set.
      */
     public function showLoginForm()
     {
@@ -28,9 +30,11 @@ class AuthController extends BaseController
      *
      * @param  Request  $request
      * @return \Illuminate\Http\RedirectResponse
+     * Validates user credentials, authenticates via AUTH API, checks user roles, and manages session data.
      */
     public function login(Request $request)
     {
+        // Validate credentials from request
         $credentials = $request->validate([
             'email' => 'required|email',
             'password' => 'required',
@@ -113,6 +117,7 @@ class AuthController extends BaseController
      * Handle logout request
      *
      * @return \Illuminate\Http\RedirectResponse
+     * Logs out the user via AUTH API, clears session data, and flashes a logout message.
      */
     public function logout()
     {
@@ -134,6 +139,7 @@ class AuthController extends BaseController
      * Get authenticated user profile
      *
      * @return \Illuminate\View\View
+     * Retrieves the authenticated user's profile from the AUTH API and displays it.
      */
     public function profile()
     {

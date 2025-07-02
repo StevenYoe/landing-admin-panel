@@ -1,3 +1,8 @@
+<!--
+    Edit Product Page
+    This Blade view provides a form for editing an existing product in the admin panel.
+    Includes fields for product names, category, status, descriptions, image upload, and uses custom Blade components for UI consistency.
+-->
 @extends('layouts.app')
 
 @section('title', 'Edit Product - Pazar Website Admin')
@@ -5,6 +10,9 @@
 @section('page-title', 'Edit Product')
 
 @section('content')
+    <!--
+        Back to List button: Navigates back to the product list page.
+    -->
     <div class="mb-6">
         <x-button href="{{ route('products.index') }}" variant="outline">
             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -13,14 +21,24 @@
             Back to List
         </x-button>
     </div>
-    
+    <!--
+        Card container for the product edit form.
+    -->
     <x-card>
+        <!--
+            Form to update an existing product.
+            Submits to the products.update route using PUT method.
+            enctype="multipart/form-data" allows image upload.
+        -->
         <form action="{{ route('products.update', $product['p_id']) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
-            
+            <!--
+                Form fields are organized in a responsive grid.
+            -->
             <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
                 <div>
+                    <!-- Input for product name in Indonesian -->
                     <x-form.input 
                         name="p_title_id" 
                         label="Product Name (Indonesia)" 
@@ -30,8 +48,8 @@
                         helper="Maximum 255 characters"
                     />
                 </div>
-                
                 <div>
+                    <!-- Input for product name in English -->
                     <x-form.input 
                         name="p_title_en" 
                         label="Product Name (English)" 
@@ -41,8 +59,8 @@
                         helper="Maximum 255 characters"
                     />
                 </div>
-                
                 <div>
+                    <!-- Select for product category -->
                     <x-form.select 
                         name="p_id_product_category" 
                         label="Product Category" 
@@ -52,8 +70,8 @@
                         required
                     />
                 </div>
-                
                 <div class="md:col-span-2">
+                    <!-- Radio buttons for product status (Active/Inactive) -->
                     <label class="block text-sm font-medium mb-2">Status</label>
                     <div class="flex items-center space-x-4">
                         <label class="inline-flex items-center">
@@ -68,8 +86,8 @@
                         </label>
                     </div>
                 </div>
-                
                 <div class="md:col-span-2">
+                    <!-- Textarea for product description in Indonesian -->
                     <x-form.textarea 
                         name="p_description_id" 
                         label="Description (Indonesia)" 
@@ -78,8 +96,8 @@
                         rows="4"
                     />
                 </div>
-                
                 <div class="md:col-span-2">
+                    <!-- Textarea for product description in English -->
                     <x-form.textarea 
                         name="p_description_en" 
                         label="Description (English)" 
@@ -88,8 +106,11 @@
                         rows="4"
                     />
                 </div>
-                
                 <div class="md:col-span-2">
+                    <!--
+                        File input for product image upload.
+                        Accepts image files only. Shows current image if available.
+                    -->
                     <label for="p_image" class="block text-sm font-medium mb-2">Gambar Produk</label>
                     <input type="file" name="p_image" id="p_image" accept="image/*"
                         class="block w-full text-sm text-gray-400 border border-gray-600 rounded-md 
@@ -98,7 +119,6 @@
                         file:bg-accent file:text-white
                         hover:file:bg-accent-dark">
                     <p class="mt-1 text-xs text-gray-400">Upload JPG, PNG, or GIF (max 2MB)</p>
-                    
                     @if(!empty($product['p_image']))
                         <div class="mt-2">
                             <p class="text-sm text-gray-400 mb-2">Current Product Image:</p>
@@ -107,7 +127,9 @@
                     @endif
                 </div>
             </div>
-            
+            <!--
+                Action buttons: Cancel returns to the list, Update submits the form.
+            -->
             <div class="flex justify-end mt-6 space-x-3">
                 <x-button type="button" href="{{ route('products.index') }}" variant="outline">
                     Cancel

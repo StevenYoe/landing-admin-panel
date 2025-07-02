@@ -1,4 +1,7 @@
 <?php
+// RecipeCategoryController manages CRUD operations for recipe categories.
+// It handles listing, creating, updating, showing, and deleting recipe category records via the CRUD API.
+// Also fetches related recipes for each category and transforms image paths for display.
 
 namespace App\Http\Controllers;
 
@@ -10,6 +13,7 @@ class RecipeCategoryController extends BaseController
 {
     /**
      * Display a listing of the recipe categories.
+     * Handles sorting, pagination, error logging, and fetches data from the CRUD API.
      *
      * @return \Illuminate\View\View
      */
@@ -73,6 +77,7 @@ class RecipeCategoryController extends BaseController
 
     /**
      * Store a newly created recipe category in storage.
+     * Validates input and sends data to the CRUD API.
      *
      * @param  Request  $request
      * @return \Illuminate\Http\RedirectResponse
@@ -102,6 +107,7 @@ class RecipeCategoryController extends BaseController
 
     /**
      * Display the specified recipe category.
+     * Fetches a single recipe category record and its related recipes, transforms image paths.
      *
      * @param  int  $id
      * @return \Illuminate\View\View
@@ -137,6 +143,7 @@ class RecipeCategoryController extends BaseController
 
     /**
      * Show the form for editing the specified recipe category.
+     * Fetches the record for editing.
      *
      * @param  int  $id
      * @return \Illuminate\View\View
@@ -157,6 +164,7 @@ class RecipeCategoryController extends BaseController
 
     /**
      * Update the specified recipe category in storage.
+     * Validates input and updates the record via the CRUD API.
      *
      * @param  Request  $request
      * @param  int  $id
@@ -187,6 +195,7 @@ class RecipeCategoryController extends BaseController
 
     /**
      * Remove the specified recipe category from storage.
+     * Deletes the record via the CRUD API and handles the response.
      *
      * @param  int  $id
      * @return \Illuminate\Http\RedirectResponse

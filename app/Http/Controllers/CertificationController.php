@@ -1,4 +1,6 @@
 <?php
+// CertificationController manages CRUD operations for certifications.
+// It handles listing, creating, updating, showing, and deleting certification records via the CRUD API.
 
 namespace App\Http\Controllers;
 
@@ -10,6 +12,7 @@ class CertificationController extends BaseController
 {
     /**
      * Display a listing of the certifications.
+     * Handles sorting, pagination, and image path transformation.
      *
      * @return \Illuminate\View\View
      */
@@ -74,6 +77,7 @@ class CertificationController extends BaseController
 
     /**
      * Store a newly created certification in storage.
+     * Validates input, handles file upload, and sends data to the CRUD API.
      *
      * @param  Request  $request
      * @return \Illuminate\Http\RedirectResponse
@@ -113,6 +117,7 @@ class CertificationController extends BaseController
 
     /**
      * Display the specified certification.
+     * Fetches a single certification record and transforms its image path.
      *
      * @param  int  $id
      * @return \Illuminate\View\View
@@ -138,6 +143,7 @@ class CertificationController extends BaseController
 
     /**
      * Show the form for editing the specified certification.
+     * Fetches the record and transforms its image path for editing.
      *
      * @param  int  $id
      * @return \Illuminate\View\View
@@ -163,6 +169,7 @@ class CertificationController extends BaseController
 
     /**
      * Update the specified certification in storage.
+     * Validates input, handles file upload, and updates the record via the CRUD API.
      *
      * @param  Request  $request
      * @param  int  $id
@@ -203,6 +210,7 @@ class CertificationController extends BaseController
 
     /**
      * Remove the specified certification from storage.
+     * Deletes the record via the CRUD API and handles the response.
      *
      * @param  int  $id
      * @return \Illuminate\Http\RedirectResponse

@@ -1,4 +1,7 @@
 <?php
+// HeaderController manages CRUD operations for header items.
+// It handles listing, creating, updating, showing, and deleting header records via the CRUD API.
+// Also manages file uploads for header images and image path transformation.
 
 namespace App\Http\Controllers;
 
@@ -10,6 +13,7 @@ class HeaderController extends BaseController
 {
     /**
      * Display a listing of the headers.
+     * Handles sorting, pagination, and image path transformation.
      *
      * @return \Illuminate\View\View
      */
@@ -74,6 +78,7 @@ class HeaderController extends BaseController
 
     /**
      * Store a newly created header in storage.
+     * Validates input, handles file upload, and sends data to the CRUD API.
      *
      * @param  Request  $request
      * @return \Illuminate\Http\RedirectResponse
@@ -112,6 +117,7 @@ class HeaderController extends BaseController
 
     /**
      * Display the specified header.
+     * Fetches a single header record and transforms its image path.
      *
      * @param  int  $id
      * @return \Illuminate\View\View
@@ -137,6 +143,7 @@ class HeaderController extends BaseController
 
     /**
      * Show the form for editing the specified header.
+     * Fetches the record and transforms its image path for editing.
      *
      * @param  int  $id
      * @return \Illuminate\View\View
@@ -162,6 +169,7 @@ class HeaderController extends BaseController
 
     /**
      * Update the specified header in storage.
+     * Validates input, handles file upload, and updates the record via the CRUD API.
      *
      * @param  Request  $request
      * @param  int  $id
@@ -201,6 +209,7 @@ class HeaderController extends BaseController
 
     /**
      * Remove the specified header from storage.
+     * Deletes the record via the CRUD API and handles the response.
      *
      * @param  int  $id
      * @return \Illuminate\Http\RedirectResponse

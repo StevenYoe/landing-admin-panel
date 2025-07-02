@@ -1,4 +1,7 @@
 <?php
+// RecipeDetailController manages CRUD operations for recipe details.
+// It handles creating, updating, editing, and deleting recipe detail records via the CRUD API.
+// Also fetches recipe information for context and manages validation and error handling.
 
 namespace App\Http\Controllers;
 
@@ -9,6 +12,7 @@ class RecipeDetailController extends BaseController
 {
     /**
      * Show the form for creating a new recipe detail.
+     * Fetches recipe information for context.
      *
      * @param  int  $recipeId
      * @return \Illuminate\View\View
@@ -30,6 +34,7 @@ class RecipeDetailController extends BaseController
 
     /**
      * Store a newly created recipe detail in storage.
+     * Validates input, adds recipe ID, and sends data to the CRUD API.
      *
      * @param  Request  $request
      * @param  int  $recipeId
@@ -67,6 +72,7 @@ class RecipeDetailController extends BaseController
 
     /**
      * Show the form for editing the specified recipe detail.
+     * Fetches recipe and recipe detail information for editing.
      *
      * @param  int  $recipeId
      * @return \Illuminate\View\View
@@ -98,6 +104,7 @@ class RecipeDetailController extends BaseController
 
     /**
      * Update the specified recipe detail in storage.
+     * Validates input and updates the record via the CRUD API.
      *
      * @param  Request  $request
      * @param  int  $id
@@ -136,6 +143,7 @@ class RecipeDetailController extends BaseController
 
     /**
      * Remove the specified recipe detail from storage.
+     * Deletes the record via the CRUD API and handles the response.
      *
      * @param  int  $id
      * @param  int  $recipeId

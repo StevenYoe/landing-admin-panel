@@ -1,4 +1,7 @@
 <?php
+// ProductCategoryController manages CRUD operations for product categories.
+// It handles listing, creating, updating, showing, and deleting product category records via the CRUD API.
+// Also manages file uploads for category images and transforms image paths to full URLs for display.
 
 namespace App\Http\Controllers;
 
@@ -10,6 +13,7 @@ class ProductCategoryController extends BaseController
 {
     /**
      * Display a listing of the product categories.
+     * Handles sorting, pagination, error logging, and image path transformation.
      *
      * @return \Illuminate\View\View
      */
@@ -78,6 +82,7 @@ class ProductCategoryController extends BaseController
 
     /**
      * Store a newly created product category in storage.
+     * Validates input, handles file upload, and sends data to the CRUD API.
      *
      * @param  Request  $request
      * @return \Illuminate\Http\RedirectResponse
@@ -115,6 +120,7 @@ class ProductCategoryController extends BaseController
 
     /**
      * Display the specified product category.
+     * Fetches a single product category record and transforms its image path.
      *
      * @param  int  $id
      * @return \Illuminate\View\View
@@ -140,6 +146,7 @@ class ProductCategoryController extends BaseController
 
     /**
      * Show the form for editing the specified product category.
+     * Fetches the record and transforms its image path for editing.
      *
      * @param  int  $id
      * @return \Illuminate\View\View
@@ -165,6 +172,7 @@ class ProductCategoryController extends BaseController
 
     /**
      * Update the specified product category in storage.
+     * Validates input, handles file upload, and updates the record via the CRUD API.
      *
      * @param  Request  $request
      * @param  int  $id
@@ -203,6 +211,7 @@ class ProductCategoryController extends BaseController
 
     /**
      * Remove the specified product category from storage.
+     * Deletes the record via the CRUD API and handles the response.
      *
      * @param  int  $id
      * @return \Illuminate\Http\RedirectResponse

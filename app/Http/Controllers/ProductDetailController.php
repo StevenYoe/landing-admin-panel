@@ -1,4 +1,7 @@
 <?php
+// ProductDetailController manages CRUD operations for product details.
+// It handles creating, updating, and editing product detail records via the CRUD API.
+// Also fetches product information for context and manages validation and error handling.
 
 namespace App\Http\Controllers;
 
@@ -9,6 +12,7 @@ class ProductDetailController extends BaseController
 {
     /**
      * Show the form for creating a new product detail.
+     * Fetches product information for context.
      *
      * @param  int  $productId
      * @return \Illuminate\View\View
@@ -30,6 +34,7 @@ class ProductDetailController extends BaseController
 
     /**
      * Store a newly created product detail in storage.
+     * Validates input, adds product ID, and sends data to the CRUD API.
      *
      * @param  Request  $request
      * @param  int  $productId
@@ -67,6 +72,7 @@ class ProductDetailController extends BaseController
 
     /**
      * Show the form for editing the specified product detail.
+     * Fetches product and product detail information for editing.
      *
      * @param  int  $productId
      * @return \Illuminate\View\View
@@ -99,6 +105,7 @@ class ProductDetailController extends BaseController
 
     /**
      * Update the specified product detail in storage.
+     * Validates input and updates the record via the CRUD API.
      *
      * @param  Request  $request
      * @param  int  $id

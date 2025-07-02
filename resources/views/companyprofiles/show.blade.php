@@ -1,3 +1,14 @@
+<!--
+    Company Profile Show Page (show.blade.php)
+    ------------------------------------------------
+    This Blade template displays the details of a single Company Profile entry in the Pazar Website Admin panel.
+    - Extends the main app layout for consistent styling.
+    - Provides a back button to return to the Company Profile list.
+    - Includes buttons to edit or delete the current Company Profile entry.
+    - Shows all details: ID, type, and descriptions (Indonesian and English).
+    - Uses custom Blade components for layout and styling.
+-->
+
 @extends('layouts.app')
 
 @section('title', 'Company Profile Details - Pazar Website Admin')
@@ -6,6 +17,7 @@
 
 @section('content')
     <div class="mb-6 flex justify-between items-center">
+        <!-- Back button to return to the Company Profile list -->
         <x-button href="{{ route('companyprofiles.index') }}" variant="outline">
             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
@@ -14,6 +26,7 @@
         </x-button>
         
         <div class="flex justify-center space-x-2">
+            <!-- Edit button for the current Company Profile entry -->
             <x-button href="{{ route('companyprofiles.edit', $companyProfile['cp_id']) }}" variant="primary">
                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
@@ -21,6 +34,7 @@
                 Edit
             </x-button>
             
+            <!-- Delete button for the current Company Profile entry -->
             <form action="{{ route('companyprofiles.destroy', $companyProfile['cp_id']) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this company profile?');">
                 @csrf
                 @method('DELETE')
@@ -35,6 +49,7 @@
     </div>
     
     <div class="grid grid-cols-1 gap-6">
+        <!-- Card displaying Company Profile ID and type -->
         <x-card title="Company Profile Information">
             <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div>
@@ -48,6 +63,7 @@
             </div>
         </x-card>
         
+        <!-- Card displaying Company Profile descriptions -->
         <x-card title="Company Profile Description">
             <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
                 <div>

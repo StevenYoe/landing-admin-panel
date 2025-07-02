@@ -1,4 +1,6 @@
 <?php
+// ProfileController handles displaying the authenticated user's profile.
+// It retrieves user data from the session and, if needed, fetches the latest profile data from the Auth API.
 
 namespace App\Http\Controllers;
 
@@ -9,6 +11,7 @@ class ProfileController extends BaseController // Change to extend BaseControlle
 {
     /**
      * Display the user's profile.
+     * Gets user data from session and updates it from the Auth API if available.
      *
      * @return \Illuminate\View\View
      */

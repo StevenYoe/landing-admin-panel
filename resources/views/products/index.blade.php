@@ -1,3 +1,8 @@
+<!--
+    Product List Page
+    This Blade view displays a list of all products in the admin panel.
+    Includes a filter form, table with product details, and actions to view, edit, or delete each product.
+-->
 @extends('layouts.app')
 
 @section('title', 'Products - Pazar Website Admin')
@@ -5,7 +10,9 @@
 @section('page-title', 'Products')
 
 @section('content')
-
+    <!--
+        Header section: Shows the page title and a button to add a new product.
+    -->
     <div class="mb-6 flex justify-between items-center">
         <h2 class="text-xl font-semibold">Product List</h2>
         <x-button href="{{ route('products.create') }}" variant="primary">
@@ -15,8 +22,13 @@
             Add Product
         </x-button>
     </div>
-    
+    <!--
+        Card container for the product table and filter form.
+    -->
     <x-card>
+        <!--
+            Filter form: Allows filtering products by category.
+        -->
         <div class="mb-4">
             <form action="{{ route('products.index') }}" method="GET" class="flex flex-col sm:flex-row items-center space-y-3 sm:space-y-0 sm:space-x-4">
                 <div class="w-full sm:w-1/3">
@@ -44,8 +56,10 @@
                 </div>
             </form>
         </div>
-        
         @if(count($products) > 0)
+            <!--
+                Table of products: Displays ID, names, category, status, image, and actions for each product.
+            -->
             <div class="overflow-x-auto">
                 <x-table 
                     :headers="[
@@ -61,10 +75,15 @@
                 >
                     @foreach($products as $product)
                         <tr class="border-b dark:border-gray-700 hover:bg-gray-600">
+                            <!-- Product ID -->
                             <td class="px-5 py-4 text-center">{{ $product['p_id'] }}</td>
+                            <!-- Product Name (Indonesian) -->
                             <td class="px-5 py-4">{{ $product['p_title_id'] }}</td>
+                            <!-- Product Name (English) -->
                             <td class="px-5 py-4">{{ $product['p_title_en'] }}</td>
+                            <!-- Product Category Name -->
                             <td class="px-5 py-4 text-center">{{ $product['category_name'] ?? '-' }}</td>
+                            <!-- Product Status (Active/Inactive) -->
                             <td class="px-5 py-4 text-center">
                                 @if(isset($product['p_is_active']))
                                     <span class="px-2 py-1 text-xs rounded-full {{ $product['p_is_active'] ? 'bg-green-900 text-green-300' : 'bg-red-900 text-red-300' }}">
@@ -74,6 +93,7 @@
                                     -
                                 @endif
                             </td>
+                            <!-- Product Image (thumbnail if available) -->
                             <td class="px-5 py-4 text-center">
                                 @if(!empty($product['p_image']))
                                     <img src="{{ $product['p_image'] }}" alt="{{ $product['p_title_id'] }}" class="h-12 w-auto mx-auto">
@@ -81,19 +101,23 @@
                                     -
                                 @endif
                             </td>
+                            <!-- Action buttons: View, Edit, Delete -->
                             <td class="px-5 py-4 text-center">
                                 <div class="flex justify-center space-x-2">
+                                    <!-- View button -->
                                     <a href="{{ route('products.show', $product['p_id']) }}" class="text-blue-500 hover:text-blue-700">
                                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
                                         </svg>
                                     </a>
+                                    <!-- Edit button -->
                                     <a href="{{ route('products.edit', $product['p_id']) }}" class="text-yellow-500 hover:text-yellow-700">
                                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
                                         </svg>
                                     </a>
+                                    <!-- Delete button (with confirmation) -->
                                     <form action="{{ route('products.destroy', $product['p_id']) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this product?');">
                                         @csrf
                                         @method('DELETE')
@@ -109,12 +133,18 @@
                     @endforeach
                 </x-table>
             </div>
+            <!--
+                Pagination links if paginator is set.
+            -->
             @if(isset($paginator))
                 <div class="mt-4">
                     {{ $paginator->links() }}
                 </div>
             @endif
         @else
+            <!--
+                Empty state: Shown if there are no products in the database.
+            -->
             <div class="py-8 text-center">
                 <p class="text-gray-400">No products have been added yet</p>
                 <x-button href="{{ route('products.create') }}" variant="primary" class="mt-4">

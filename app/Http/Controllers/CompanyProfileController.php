@@ -1,4 +1,7 @@
 <?php
+// CompanyProfileController manages CRUD operations for company profiles.
+// It handles listing, creating, updating, showing, and deleting company profile records via the CRUD API.
+// Also supports showing a company profile by type.
 
 namespace App\Http\Controllers;
 
@@ -10,6 +13,7 @@ class CompanyProfileController extends BaseController
 {
     /**
      * Display a listing of the company profiles.
+     * Handles sorting and pagination.
      *
      * @return \Illuminate\View\View
      */
@@ -67,6 +71,7 @@ class CompanyProfileController extends BaseController
 
     /**
      * Store a newly created company profile in storage.
+     * Validates input and sends data to the CRUD API.
      *
      * @param  Request  $request
      * @return \Illuminate\Http\RedirectResponse
@@ -97,6 +102,7 @@ class CompanyProfileController extends BaseController
 
     /**
      * Display the specified company profile.
+     * Fetches a single company profile record.
      *
      * @param  int  $id
      * @return \Illuminate\View\View
@@ -117,6 +123,7 @@ class CompanyProfileController extends BaseController
 
     /**
      * Show the form for editing the specified company profile.
+     * Fetches the record for editing.
      *
      * @param  int  $id
      * @return \Illuminate\View\View
@@ -137,6 +144,7 @@ class CompanyProfileController extends BaseController
 
     /**
      * Update the specified company profile in storage.
+     * Validates input and updates the record via the CRUD API.
      *
      * @param  Request  $request
      * @param  int  $id
@@ -168,6 +176,7 @@ class CompanyProfileController extends BaseController
 
     /**
      * Remove the specified company profile from storage.
+     * Deletes the record via the CRUD API and handles the response.
      *
      * @param  int  $id
      * @return \Illuminate\Http\RedirectResponse
@@ -187,6 +196,7 @@ class CompanyProfileController extends BaseController
     
     /**
      * Show company profile based on type.
+     * Fetches a company profile by its type and displays it.
      *
      * @param string $type
      * @return \Illuminate\View\View

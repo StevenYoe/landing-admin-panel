@@ -1,4 +1,7 @@
 <?php
+// PopupController manages CRUD operations for popup items.
+// It handles listing, creating, updating, showing, and deleting popup records via the CRUD API.
+// Also manages file uploads for popup images, image path transformation, and ensures only one popup is active at a time.
 
 namespace App\Http\Controllers;
 
@@ -10,6 +13,7 @@ class PopupController extends BaseController
 {
     /**
      * Display a listing of the popups.
+     * Handles sorting, pagination, and image path transformation.
      *
      * @return \Illuminate\View\View
      */
@@ -74,6 +78,7 @@ class PopupController extends BaseController
 
     /**
      * Store a newly created popup in storage.
+     * Validates input, handles file upload, and sends data to the CRUD API.
      *
      * @param  Request  $request
      * @return \Illuminate\Http\RedirectResponse
@@ -112,6 +117,7 @@ class PopupController extends BaseController
 
     /**
      * Display the specified popup.
+     * Fetches a single popup record and transforms its image path.
      *
      * @param  int  $id
      * @return \Illuminate\View\View
@@ -137,6 +143,7 @@ class PopupController extends BaseController
 
     /**
      * Show the form for editing the specified popup.
+     * Fetches the record and transforms its image path for editing.
      *
      * @param  int  $id
      * @return \Illuminate\View\View
@@ -162,6 +169,7 @@ class PopupController extends BaseController
 
     /**
      * Update the specified popup in storage.
+     * Validates input, handles file upload, updates the record via the CRUD API, and deactivates other popups if set to active.
      *
      * @param  Request  $request
      * @param  int  $id
@@ -217,6 +225,7 @@ class PopupController extends BaseController
 
     /**
      * Remove the specified popup from storage.
+     * Deletes the record via the CRUD API and handles the response.
      *
      * @param  int  $id
      * @return \Illuminate\Http\RedirectResponse

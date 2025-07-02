@@ -1,4 +1,7 @@
 <?php
+// ApiAuthentication middleware ensures that the user is authenticated before accessing protected routes.
+// It checks for the presence of an auth token in the session and optionally verifies its validity with the Auth API.
+// If the token is missing or invalid, the user is redirected to the login page with a warning message.
 
 namespace App\Http\Middleware;
 
@@ -11,6 +14,8 @@ class ApiAuthentication
 {
     /**
      * Handle an incoming request.
+     * Checks for auth token and verifies its validity with the Auth API.
+     * Redirects to login if authentication fails.
      *
      * @param  Request  $request
      * @param  Closure  $next

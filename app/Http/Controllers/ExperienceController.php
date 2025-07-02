@@ -1,4 +1,6 @@
 <?php
+// ExperienceController manages CRUD operations for experience levels.
+// It handles listing, creating, updating, showing, and deleting experience level records via the CRUD API.
 
 namespace App\Http\Controllers;
 
@@ -9,6 +11,7 @@ class ExperienceController extends BaseController
 {
     /**
      * Display a listing of the experience levels.
+     * Handles sorting and pagination.
      *
      * @return \Illuminate\View\View
      */
@@ -66,6 +69,7 @@ class ExperienceController extends BaseController
     
     /**
      * Store a newly created experience level in storage.
+     * Validates input and sends data to the CRUD API.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse
@@ -93,6 +97,7 @@ class ExperienceController extends BaseController
     
     /**
      * Display the specified experience level.
+     * Fetches a single experience level record.
      *
      * @param  int  $id
      * @return \Illuminate\View\View
@@ -113,6 +118,7 @@ class ExperienceController extends BaseController
     
     /**
      * Show the form for editing the specified experience level.
+     * Fetches the record for editing.
      *
      * @param  int  $id
      * @return \Illuminate\View\View
@@ -133,6 +139,7 @@ class ExperienceController extends BaseController
     
     /**
      * Update the specified experience level in storage.
+     * Validates input and updates the record via the CRUD API.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -161,6 +168,7 @@ class ExperienceController extends BaseController
     
     /**
      * Remove the specified experience level from storage.
+     * Deletes the record via the CRUD API and handles the response.
      *
      * @param  int  $id
      * @return \Illuminate\Http\RedirectResponse

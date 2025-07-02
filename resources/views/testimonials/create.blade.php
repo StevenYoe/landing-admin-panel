@@ -1,3 +1,8 @@
+<!--
+    Add Testimonial Page
+    This Blade view provides a form for creating a new testimonial, including name, type, descriptions, gender, and image.
+    Each section, form, field, and button is commented to clarify its purpose for future developers.
+-->
 @extends('layouts.app')
 
 @section('title', 'Tambah Testimonial - Pazar Website Admin')
@@ -5,8 +10,10 @@
 @section('page-title', 'Tambah Testimonial')
 
 @section('content')
+    <!-- Top bar with Back to List button -->
     <div class="mb-6">
         <x-button href="{{ route('testimonials.index') }}" variant="outline">
+            <!-- Back icon -->
             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
             </svg>
@@ -14,12 +21,16 @@
         </x-button>
     </div>
     
+    <!-- Card container for the create form -->
     <x-card>
+        <!-- Form to add a new testimonial -->
         <form action="{{ route('testimonials.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             
+            <!-- Input fields for testimonial details -->
             <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
                 <div class="md:col-span-2">
+                    <!-- Name field -->
                     <x-form.input 
                         name="t_name" 
                         label="Nama" 
@@ -31,6 +42,7 @@
                 </div>
                 
                 <div class="md:col-span-2">
+                    <!-- Type field -->
                     <x-form.input 
                         name="t_type" 
                         label="Tipe" 
@@ -42,6 +54,7 @@
                 </div>
                 
                 <div>
+                    <!-- Description in Indonesian -->
                     <x-form.textarea 
                         name="t_description_id" 
                         label="Deskripsi (Indonesia)" 
@@ -53,6 +66,7 @@
                 </div>
                 
                 <div>
+                    <!-- Description in English -->
                     <x-form.textarea 
                         name="t_description_en" 
                         label="Deskripsi (Inggris)" 
@@ -64,15 +78,18 @@
                 </div>
                 
                 <div class="md:col-span-2">
+                    <!-- Gender radio buttons -->
                     <label class="block text-sm font-medium mb-2">Gender</label>
                     <div class="flex items-center space-x-6">
                         <div class="flex items-center">
+                            <!-- Male option -->
                             <input id="t_gender_male" name="t_gender" type="radio" value="Male" class="h-4 w-4 text-accent focus:ring-accent-light border-gray-600" {{ old('t_gender') == 'Male' ? 'checked' : '' }} required>
                             <label for="t_gender_male" class="ml-2 block text-sm font-medium">
                                 Laki-laki
                             </label>
                         </div>
                         <div class="flex items-center">
+                            <!-- Female option -->
                             <input id="t_gender_female" name="t_gender" type="radio" value="Female" class="h-4 w-4 text-accent focus:ring-accent-light border-gray-600" {{ old('t_gender') == 'Female' ? 'checked' : '' }}>
                             <label for="t_gender_female" class="ml-2 block text-sm font-medium">
                                 Perempuan
@@ -82,6 +99,7 @@
                 </div>
                 
                 <div class="md:col-span-2">
+                    <!-- Testimonial image upload field -->
                     <label for="t_image" class="block text-sm font-medium mb-2">Gambar Testimonial</label>
                     <input type="file" name="t_image" id="t_image" accept="image/*"
                         class="block w-full text-sm text-gray-400 border border-gray-600 rounded-md 
@@ -93,10 +111,13 @@
                 </div>
             </div>
             
+            <!-- Action buttons: Cancel and Save -->
             <div class="flex justify-end mt-6 space-x-3">
+                <!-- Cancel button: returns to the list -->
                 <x-button type="button" href="{{ route('testimonials.index') }}" variant="outline">
                     Batal
                 </x-button>
+                <!-- Save button: submits the form -->
                 <x-button type="submit" variant="primary">
                     Simpan
                 </x-button>

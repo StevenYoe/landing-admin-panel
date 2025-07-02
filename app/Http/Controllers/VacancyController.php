@@ -1,4 +1,7 @@
 <?php
+// VacancyController manages CRUD operations for vacancies.
+// It handles listing, creating, updating, showing, and deleting vacancy records via the CRUD API.
+// Also manages filter options for departments, employments, and experiences, and processes related data for display.
 
 namespace App\Http\Controllers;
 
@@ -9,6 +12,7 @@ class VacancyController extends BaseController
 {
     /**
      * Display a listing of the vacancies.
+     * Handles sorting, pagination, filtering, and processes related data for display.
      *
      * @return \Illuminate\View\View
      */
@@ -120,6 +124,7 @@ class VacancyController extends BaseController
     
     /**
      * Show the form for creating a new vacancy.
+     * Fetches dropdown options for departments, employments, and experiences.
      *
      * @return \Illuminate\View\View
      */
@@ -140,6 +145,7 @@ class VacancyController extends BaseController
     
     /**
      * Store a newly created vacancy in storage.
+     * Validates input, handles checkbox values, and sends data to the CRUD API.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse
@@ -194,6 +200,7 @@ class VacancyController extends BaseController
     
     /**
      * Display the specified vacancy.
+     * Fetches a single vacancy record and processes related data for display.
      *
      * @param  int  $id
      * @return \Illuminate\View\View
@@ -235,6 +242,7 @@ class VacancyController extends BaseController
     
     /**
      * Show the form for editing the specified vacancy.
+     * Fetches the record and dropdown options for editing.
      *
      * @param  int  $id
      * @return \Illuminate\View\View
@@ -265,6 +273,7 @@ class VacancyController extends BaseController
     
     /**
      * Update the specified vacancy in storage.
+     * Validates input, handles checkbox values, and updates the record via the CRUD API.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -338,6 +347,7 @@ class VacancyController extends BaseController
     
     /**
      * Remove the specified vacancy from storage.
+     * Deletes the record via the CRUD API and handles the response.
      *
      * @param  int  $id
      * @return \Illuminate\Http\RedirectResponse

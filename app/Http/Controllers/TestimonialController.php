@@ -1,4 +1,7 @@
 <?php
+// TestimonialController manages CRUD operations for testimonials.
+// It handles listing, creating, updating, showing, and deleting testimonial records via the CRUD API.
+// Also manages file uploads for testimonial images, image path transformation, and supports filtering by type.
 
 namespace App\Http\Controllers;
 
@@ -10,6 +13,7 @@ class TestimonialController extends BaseController
 {
     /**
      * Display a listing of the testimonials.
+     * Handles sorting, pagination, and image path transformation.
      *
      * @return \Illuminate\View\View
      */
@@ -74,6 +78,7 @@ class TestimonialController extends BaseController
 
     /**
      * Store a newly created testimonial in storage.
+     * Validates input, handles file upload, and sends data to the CRUD API.
      *
      * @param  Request  $request
      * @return \Illuminate\Http\RedirectResponse
@@ -112,6 +117,7 @@ class TestimonialController extends BaseController
 
     /**
      * Display the specified testimonial.
+     * Fetches a single testimonial record and transforms its image path.
      *
      * @param  int  $id
      * @return \Illuminate\View\View
@@ -137,6 +143,7 @@ class TestimonialController extends BaseController
 
     /**
      * Show the form for editing the specified testimonial.
+     * Fetches the record and transforms its image path for editing.
      *
      * @param  int  $id
      * @return \Illuminate\View\View
@@ -162,6 +169,7 @@ class TestimonialController extends BaseController
 
     /**
      * Update the specified testimonial in storage.
+     * Validates input, handles file upload, and updates the record via the CRUD API.
      *
      * @param  Request  $request
      * @param  int  $id
@@ -208,6 +216,7 @@ class TestimonialController extends BaseController
 
     /**
      * Remove the specified testimonial from storage.
+     * Deletes the record via the CRUD API and handles the response.
      *
      * @param  int  $id
      * @return \Illuminate\Http\RedirectResponse
@@ -227,6 +236,7 @@ class TestimonialController extends BaseController
     
     /**
      * Show testimonials based on type.
+     * Fetches testimonials by type and transforms image paths.
      *
      * @param string $type
      * @return \Illuminate\View\View

@@ -1,4 +1,7 @@
 <?php
+// HistoryController manages CRUD operations for history items.
+// It handles listing, creating, updating, showing, and deleting history records via the CRUD API.
+// Also manages file uploads for history images and image path transformation.
 
 namespace App\Http\Controllers;
 
@@ -10,6 +13,7 @@ class HistoryController extends BaseController
 {
     /**
      * Display a listing of the histories.
+     * Handles sorting, pagination, and image path transformation.
      *
      * @return \Illuminate\View\View
      */
@@ -74,6 +78,7 @@ class HistoryController extends BaseController
 
     /**
      * Store a newly created history in storage.
+     * Validates input, handles file upload, and sends data to the CRUD API.
      *
      * @param  Request  $request
      * @return \Illuminate\Http\RedirectResponse
@@ -110,6 +115,7 @@ class HistoryController extends BaseController
 
     /**
      * Display the specified history.
+     * Fetches a single history record and transforms its image path.
      *
      * @param  int  $id
      * @return \Illuminate\View\View
@@ -135,6 +141,7 @@ class HistoryController extends BaseController
 
     /**
      * Show the form for editing the specified history.
+     * Fetches the record and transforms its image path for editing.
      *
      * @param  int  $id
      * @return \Illuminate\View\View
@@ -160,6 +167,7 @@ class HistoryController extends BaseController
 
     /**
      * Update the specified history in storage.
+     * Validates input, handles file upload, and updates the record via the CRUD API.
      *
      * @param  Request  $request
      * @param  int  $id
@@ -204,6 +212,7 @@ class HistoryController extends BaseController
 
     /**
      * Remove the specified history from storage.
+     * Deletes the record via the CRUD API and handles the response.
      *
      * @param  int  $id
      * @return \Illuminate\Http\RedirectResponse

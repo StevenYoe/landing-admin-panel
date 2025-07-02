@@ -1,4 +1,6 @@
 <?php
+// BaseController provides shared logic for authentication, API requests, and user session management.
+// It is intended to be extended by other controllers in the application.
 
 namespace App\Http\Controllers;
 
@@ -10,16 +12,19 @@ class BaseController extends Controller
 {
     /**
      * Authentication API base URL
+     * Used for all authentication-related API requests.
      */
     protected $authApiUrl;
 
     /**
      * CRUD API base URL
+     * Used for all CRUD-related API requests.
      */
     protected $crudApiUrl;
 
     /**
      * Constructor
+     * Initializes API base URLs from config or environment variables.
      */
     public function __construct()
     {
@@ -29,6 +34,7 @@ class BaseController extends Controller
 
     /**
      * Check if the current user belongs to a specific division
+     * Returns true if the user's division matches the given name.
      *
      * @param string $divisionName
      * @return bool
@@ -46,6 +52,7 @@ class BaseController extends Controller
 
     /**
      * Check if the current user is a superadmin
+     * Returns true if the user has the 'superadmin' role.
      *
      * @return bool
      */
@@ -71,6 +78,7 @@ class BaseController extends Controller
 
     /**
      * Check if the current user has a specific role
+     * Returns true if the user has the specified role.
      *
      * @param string $roleName
      * @return bool
@@ -97,6 +105,7 @@ class BaseController extends Controller
 
     /**
      * Make a request to the Authentication API
+     * Handles all HTTP methods for the Auth API.
      *
      * @param string $method
      * @param string $endpoint
@@ -110,6 +119,7 @@ class BaseController extends Controller
 
     /**
      * Make a request to the CRUD API
+     * Adds user and employee IDs to requests for tracking.
      *
      * @param string $method
      * @param string $endpoint
@@ -150,6 +160,7 @@ class BaseController extends Controller
 
     /**
      * Make an HTTP request to an API
+     * Handles authentication, file uploads, and error responses.
      *
      * @param string $method
      * @param string $url
@@ -269,6 +280,7 @@ class BaseController extends Controller
 
     /**
      * Shorthand methods for Auth API
+     * Simplifies GET, POST, PUT, DELETE requests to the Auth API.
      */
     protected function authApiGet($endpoint, $params = [])
     {
@@ -292,6 +304,7 @@ class BaseController extends Controller
 
     /**
      * Shorthand methods for CRUD API
+     * Simplifies GET, POST, PUT, DELETE requests to the CRUD API.
      */
     protected function crudApiGet($endpoint, $params = [])
     {
@@ -315,6 +328,7 @@ class BaseController extends Controller
 
     /**
      * Get the current authenticated user ID
+     * Returns the user ID from the session, or null if not set.
      * 
      * @return int|null
      */
@@ -326,6 +340,7 @@ class BaseController extends Controller
     
     /**
      * Get the current authenticated employee ID
+     * Returns the employee ID from the session, or null if not set.
      * 
      * @return string|null
      */

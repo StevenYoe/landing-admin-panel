@@ -1,3 +1,8 @@
+<!--
+    Edit Footer Page
+    This Blade view provides a form to edit an existing footer entry in the system.
+    Each section and component is commented to explain its purpose and logic.
+-->
 @extends('layouts.app')
 
 @section('title', 'Edit Footer - Pazar Website Admin')
@@ -5,6 +10,7 @@
 @section('page-title', 'Edit Footer')
 
 @section('content')
+    <!-- Header section with Back to List button -->
     <div class="mb-6">
         <x-button href="{{ route('footers.index') }}" variant="outline">
             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -14,13 +20,17 @@
         </x-button>
     </div>
     
+    <!-- Card component containing the footer edit form -->
     <x-card>
+        <!-- Form to update existing footer data, including file upload -->
         <form action="{{ route('footers.update', $footer['f_id']) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             
+            <!-- Input fields for footer type, icon, labels, link, and descriptions -->
             <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
                 <div>
+                    <!-- Input for footer type (e.g., link, social, contact) -->
                     <x-form.input 
                         name="f_type" 
                         label="Footer Type" 
@@ -32,6 +42,7 @@
                 </div>
                 
                 <div class="md:col-span-2">
+                    <!-- File input for footer icon (SVG, JPG, PNG, GIF) -->
                     <label for="f_icon" class="block text-sm font-medium mb-2">Icon</label>
                     <input type="file" name="f_icon" id="f_icon" accept="image/svg+xml,image/*"
                         class="block w-full text-sm text-gray-400 border border-gray-600 rounded-md 
@@ -39,8 +50,8 @@
                         file:border-0 file:text-sm file:font-medium
                         file:bg-accent file:text-white
                         hover:file:bg-accent-dark">
-                    <p class="mt-1 text-xs text-gray-400">Upload SVG, JPG, PNG, atau GIF. <b>Preffered SVG</b> (max 2MB)</p>
-                    
+                    <p class="mt-1 text-xs text-gray-400">Upload SVG, JPG, PNG, or GIF. <b>Preferred SVG</b> (max 2MB)</p>
+                    <!-- Display current footer icon if available -->
                     @if(!empty($footer['f_icon']))
                         <div class="mt-2">
                             <p class="text-sm text-gray-400 mb-2">Current Footer Icon:</p>
@@ -50,6 +61,7 @@
                 </div>
                 
                 <div>
+                    <!-- Input for label in Indonesian -->
                     <x-form.input 
                         name="f_label_id" 
                         label="Label (Indonesian)" 
@@ -61,6 +73,7 @@
                 </div>
                 
                 <div>
+                    <!-- Input for label in English -->
                     <x-form.input 
                         name="f_label_en" 
                         label="Label (English)" 
@@ -72,6 +85,7 @@
                 </div>
                 
                 <div class="md:col-span-2">
+                    <!-- Input for footer link (URL) -->
                     <x-form.input 
                         name="f_link" 
                         label="Link" 
@@ -82,6 +96,7 @@
                 </div>
                 
                 <div class="md:col-span-2">
+                    <!-- Textarea for description in Indonesian -->
                     <x-form.textarea 
                         name="f_description_id" 
                         label="Description (Indonesian)" 
@@ -92,6 +107,7 @@
                 </div>
                 
                 <div class="md:col-span-2">
+                    <!-- Textarea for description in English -->
                     <x-form.textarea 
                         name="f_description_en" 
                         label="Description (English)" 
@@ -102,10 +118,13 @@
                 </div>
             </div>
             
+            <!-- Action buttons: Cancel and Save -->
             <div class="flex justify-end mt-6 space-x-3">
+                <!-- Cancel button returns to footer list -->
                 <x-button type="button" href="{{ route('footers.index') }}" variant="outline">
                     Cancel
                 </x-button>
+                <!-- Save button submits the form -->
                 <x-button type="submit" variant="primary">
                     Save
                 </x-button>

@@ -1,3 +1,14 @@
+<!--
+    Career Info Show Page (show.blade.php)
+    ------------------------------------------------
+    This Blade template displays the details of a single Career Info entry in the Pazar Website Admin panel.
+    - Extends the main app layout for consistent styling.
+    - Provides a back button to return to the Career Info list.
+    - Includes buttons to edit or delete the current Career Info entry.
+    - Shows all details: ID, titles, descriptions (Indonesian and English), and image if available.
+    - Uses custom Blade components for layout and styling.
+-->
+
 @extends('layouts.app')
 
 @section('title', 'Career Info Details - Pazar Website Admin')
@@ -6,6 +17,7 @@
 
 @section('content')
     <div class="mb-6 flex justify-between items-center">
+        <!-- Back button to return to the Career Info list -->
         <x-button href="{{ route('careerinfos.index') }}" variant="outline">
             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
@@ -14,6 +26,7 @@
         </x-button>
         
         <div class="flex justify-center space-x-2">
+            <!-- Edit button for the current Career Info entry -->
             <x-button href="{{ route('careerinfos.edit', $careerInfo['ci_id']) }}" variant="primary">
                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
@@ -21,6 +34,7 @@
                 Edit
             </x-button>
             
+            <!-- Delete button for the current Career Info entry -->
             <form action="{{ route('careerinfos.destroy', $careerInfo['ci_id']) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this career info?');">
                 @csrf
                 @method('DELETE')
@@ -36,6 +50,7 @@
     
     <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
         <div class="lg:col-span-2">
+            <!-- Card displaying Career Info ID -->
             <x-card title="Career Info Information">
                 <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
                     <div>
@@ -45,6 +60,7 @@
                 </div>
             </x-card>
             
+            <!-- Card displaying Career Info titles and descriptions -->
             <x-card title="Career Info Titles & Descriptions" class="mt-6">
                 <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
                     <div>
@@ -67,6 +83,7 @@
         </div>
         
         <div class="lg:col-span-1">
+            <!-- Card displaying Career Info image if available -->
             <x-card title="Image">
                 @if(!empty($careerInfo['ci_image']))
                     <div class="mb-4">

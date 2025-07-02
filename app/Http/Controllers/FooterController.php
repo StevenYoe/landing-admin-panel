@@ -1,4 +1,7 @@
 <?php
+// FooterController manages CRUD operations for footer items.
+// It handles listing, creating, updating, showing, and deleting footer records via the CRUD API.
+// Also manages file uploads for footer icons and image path transformation.
 
 namespace App\Http\Controllers;
 
@@ -10,6 +13,7 @@ class FooterController extends BaseController
 {
     /**
      * Display a listing of the footers.
+     * Handles sorting, pagination, and image path transformation.
      *
      * @return \Illuminate\View\View
      */
@@ -74,6 +78,7 @@ class FooterController extends BaseController
 
     /**
      * Store a newly created footer in storage.
+     * Validates input, handles file upload, and sends data to the CRUD API.
      *
      * @param  Request  $request
      * @return \Illuminate\Http\RedirectResponse
@@ -113,6 +118,7 @@ class FooterController extends BaseController
 
     /**
      * Display the specified footer.
+     * Fetches a single footer record and transforms its icon path.
      *
      * @param  int  $id
      * @return \Illuminate\View\View
@@ -138,6 +144,7 @@ class FooterController extends BaseController
 
     /**
      * Show the form for editing the specified footer.
+     * Fetches the record and transforms its icon path for editing.
      *
      * @param  int  $id
      * @return \Illuminate\View\View
@@ -163,6 +170,7 @@ class FooterController extends BaseController
 
     /**
      * Update the specified footer in storage.
+     * Validates input, handles file upload, and updates the record via the CRUD API.
      *
      * @param  Request  $request
      * @param  int  $id
@@ -210,6 +218,7 @@ class FooterController extends BaseController
 
     /**
      * Remove the specified footer from storage.
+     * Deletes the record via the CRUD API and handles the response.
      *
      * @param  int  $id
      * @return \Illuminate\Http\RedirectResponse

@@ -1,3 +1,9 @@
+<!--
+    Header Details Page
+    This Blade view displays detailed information about a single header entry.
+    It provides options to go back to the list, edit, or delete the header.
+    Each section and component is commented to explain its purpose and logic.
+-->
 @extends('layouts.app')
 
 @section('title', 'Header Details - Pazar Website Admin')
@@ -5,7 +11,9 @@
 @section('page-title', 'Header Details')
 
 @section('content')
+    <!-- Header section with Back, Edit, and Delete buttons -->
     <div class="mb-6 flex justify-between items-center">
+        <!-- Button to return to the header list -->
         <x-button href="{{ route('headers.index') }}" variant="outline">
             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
@@ -14,6 +22,7 @@
         </x-button>
         
         <div class="flex justify-center space-x-2">
+            <!-- Button to edit the header -->
             <x-button href="{{ route('headers.edit', $header['h_id']) }}" variant="primary">
                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
@@ -21,6 +30,7 @@
                 Edit
             </x-button>
             
+            <!-- Form to delete the header with confirmation -->
             <form action="{{ route('headers.destroy', $header['h_id']) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this header?');">
                 @csrf
                 @method('DELETE')
@@ -36,6 +46,7 @@
     
     <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
         <div class="lg:col-span-2">
+            <!-- Card displaying header's basic information -->
             <x-card title="Header Information">
                 <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
                     <div>
@@ -45,6 +56,7 @@
                 </div>
             </x-card>
             
+            <!-- Card displaying header titles, descriptions, and page name in different languages -->
             <x-card title="Header Titles & Description" class="mt-6">
                 <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
                     <div>
@@ -70,6 +82,7 @@
         </div>
         
         <div class="lg:col-span-1">
+            <!-- Card displaying the header image if available -->
             <x-card title="Image">
                 @if(!empty($header['h_image']))
                     <div class="mb-4">
