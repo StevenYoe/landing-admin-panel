@@ -14,8 +14,8 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
-    'user_storage_url' => env('STORAGE_URL', 'http://localhost:8001/storage'),
-    'crud_storage_url' => env('STORAGE_URL', 'http://localhost:8002/storage'),
+    'user_storage_url' => env('AUTH_STORAGE_URL', 'http://localhost:8001/storage'),
+    'crud_storage_url' => env('CRUD_STORAGE_URL', 'http://localhost:8002/storage'),
 
     'auth_api_base_url' => env('AUTH_API_BASE_URL', 'http://127.0.0.1:8001/api'),
     'crud_api_base_url' => env('CRUD_API_BASE_URL', 'http://127.0.0.1:8002/api'),
