@@ -1,6 +1,6 @@
 <!--
     Edit Testimonial Page
-    This Blade view provides a form for editing an existing testimonial, including name, type, descriptions, gender, and image.
+    This Blade view provides a form for editing an existing testimonial, including name, type, descriptions, gender, product info, link, and image.
     Each section, form, field, and button is commented to clarify its purpose for future developers.
 -->
 @extends('layouts.app')
@@ -17,7 +17,7 @@
             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
             </svg>
-            Kembali ke Daftar
+            Back to List
         </x-button>
     </div>
     
@@ -30,15 +30,27 @@
             
             <!-- Input fields for testimonial details -->
             <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
-                <div class="md:col-span-2">
+                <div>
                     <!-- Name field -->
                     <x-form.input 
                         name="t_name" 
-                        label="Nama" 
-                        placeholder="Masukkan nama" 
+                        label="Name" 
+                        placeholder="Enter name" 
                         :value="old('t_name', $testimonial['t_name'])"
                         required
-                        helper="Maksimal 255 karakter"
+                        helper="Maximum 100 characters"
+                    />
+                </div>
+                
+                <div>
+                    <!-- Type field -->
+                    <x-form.input 
+                        name="t_type" 
+                        label="Type" 
+                        placeholder="Enter testimonial type" 
+                        :value="old('t_type', $testimonial['t_type'])"
+                        required
+                        helper="Maximum 100 characters"
                     />
                 </div>
                 
@@ -46,8 +58,8 @@
                     <!-- Description in Indonesian -->
                     <x-form.textarea 
                         name="t_description_id" 
-                        label="Deskripsi (Indonesia)" 
-                        placeholder="Masukkan deskripsi dalam Bahasa Indonesia" 
+                        label="Description (Indonesian)" 
+                        placeholder="Enter description in Indonesian" 
                         :value="old('t_description_id', $testimonial['t_description_id'])"
                         required
                         rows="4"
@@ -58,23 +70,44 @@
                     <!-- Description in English -->
                     <x-form.textarea 
                         name="t_description_en" 
-                        label="Deskripsi (Inggris)" 
-                        placeholder="Masukkan deskripsi dalam Bahasa Inggris" 
+                        label="Description (English)" 
+                        placeholder="Enter description in English" 
                         :value="old('t_description_en', $testimonial['t_description_en'])"
                         required
                         rows="4"
                     />
                 </div>
                 
-                <div class="md:col-span-2">
-                    <!-- Type field -->
+                <div>
+                    <!-- Product name in Indonesian -->
                     <x-form.input 
-                        name="t_type" 
-                        label="Tipe" 
-                        placeholder="Masukkan tipe testimonial" 
-                        :value="old('t_type', $testimonial['t_type'])"
-                        required
-                        helper="Maksimal 50 karakter"
+                        name="t_product_id" 
+                        label="Product Name (Indonesian)" 
+                        placeholder="Enter product name in Indonesian" 
+                        :value="old('t_product_id', $testimonial['t_product_id'])"
+                        helper="Maximum 255 characters (optional)"
+                    />
+                </div>
+                
+                <div>
+                    <!-- Product name in English -->
+                    <x-form.input 
+                        name="t_product_en" 
+                        label="Product Name (English)" 
+                        placeholder="Enter product name in English" 
+                        :value="old('t_product_en', $testimonial['t_product_en'])"
+                        helper="Maximum 255 characters (optional)"
+                    />
+                </div>
+                
+                <div class="md:col-span-2">
+                    <!-- Link field -->
+                    <x-form.input 
+                        name="t_link" 
+                        label="Link" 
+                        placeholder="Enter testimonial link" 
+                        :value="old('t_link', $testimonial['t_link'])"
+                        helper="Maximum 255 characters (optional)"
                     />
                 </div>
                 
@@ -86,14 +119,14 @@
                             <!-- Male option -->
                             <input id="t_gender_male" name="t_gender" type="radio" value="Male" class="h-4 w-4 text-accent focus:ring-accent-light border-gray-600" {{ (old('t_gender', $testimonial['t_gender']) == 'Male') ? 'checked' : '' }} required>
                             <label for="t_gender_male" class="ml-2 block text-sm font-medium">
-                                Laki-laki
+                                Male
                             </label>
                         </div>
                         <div class="flex items-center">
                             <!-- Female option -->
                             <input id="t_gender_female" name="t_gender" type="radio" value="Female" class="h-4 w-4 text-accent focus:ring-accent-light border-gray-600" {{ (old('t_gender', $testimonial['t_gender']) == 'Female') ? 'checked' : '' }}>
                             <label for="t_gender_female" class="ml-2 block text-sm font-medium">
-                                Perempuan
+                                Female
                             </label>
                         </div>
                     </div>
@@ -101,19 +134,19 @@
                 
                 <div class="md:col-span-2">
                     <!-- Testimonial image upload field -->
-                    <label for="t_image" class="block text-sm font-medium mb-2">Gambar Testimonial</label>
+                    <label for="t_image" class="block text-sm font-medium mb-2">Testimonial Image</label>
                     <input type="file" name="t_image" id="t_image" accept="image/*"
                         class="block w-full text-sm text-gray-400 border border-gray-600 rounded-md 
                         file:mr-4 file:py-2 file:px-4 file:rounded-md
                         file:border-0 file:text-sm file:font-medium
                         file:bg-accent file:text-white
                         hover:file:bg-accent-dark">
-                    <p class="mt-1 text-xs text-gray-400">Upload JPG, PNG, or GIF (max 2MB)</p>
+                    <p class="mt-1 text-xs text-gray-400">Upload Webp, JPG, PNG, or GIF. <b>Preferred Webp</b> (max 5MB)</p>
                     
                     @if(!empty($testimonial['t_image']))
                         <!-- Display current testimonial image if exists -->
                         <div class="mt-2">
-                            <p class="text-sm text-gray-400 mb-2">Gambar Testimonial Saat Ini:</p>
+                            <p class="text-sm text-gray-400 mb-2">Current Testimonial Image:</p>
                             <img src="{{ $testimonial['t_image'] }}" alt="Testimonial Image" class="h-32 w-auto border border-gray-700 rounded-md">
                         </div>
                     @endif
@@ -124,11 +157,11 @@
             <div class="flex justify-end mt-6 space-x-3">
                 <!-- Cancel button: returns to the list -->
                 <x-button type="button" href="{{ route('testimonials.index') }}" variant="outline">
-                    Batal
+                    Cancel
                 </x-button>
                 <!-- Update button: submits the form -->
                 <x-button type="submit" variant="primary">
-                    Perbarui
+                    Update
                 </x-button>
             </div>
         </form>

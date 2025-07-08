@@ -86,11 +86,14 @@ class TestimonialController extends BaseController
     public function store(Request $request)
     {
         $validated = $request->validate([
-            't_name' => 'required|string|max:255',
+            't_name' => 'required|string|max:100',
             't_description_id' => 'required|string',
             't_description_en' => 'required|string',
-            't_type' => 'required|string|max:50',
+            't_product_id' => 'nullable|string|max:255',
+            't_product_en' => 'nullable|string|max:255',
+            't_type' => 'required|string|max:100',
             't_gender' => 'required|in:Male,Female',
+            't_link' => 'nullable|string|max:255',
             't_image' => 'nullable|image|max:5120',
         ]);
         
@@ -178,11 +181,14 @@ class TestimonialController extends BaseController
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
-            't_name' => 'required|string|max:255',
+            't_name' => 'required|string|max:100',
             't_description_id' => 'required|string',
             't_description_en' => 'required|string',
-            't_type' => 'required|string|max:50',
+            't_product_id' => 'nullable|string|max:255',
+            't_product_en' => 'nullable|string|max:255',
+            't_type' => 'required|string|max:100',
             't_gender' => 'required|in:Male,Female',
+            't_link' => 'nullable|string|max:255',
             't_image' => 'nullable|image|max:5120',
         ]);
         

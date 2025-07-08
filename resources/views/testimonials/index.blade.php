@@ -13,14 +13,14 @@
 
     <!-- Top bar with page title and Add Testimonial button -->
     <div class="mb-6 flex justify-between items-center">
-        <h2 class="text-xl font-semibold">Daftar Testimonial</h2>
+        <h2 class="text-xl font-semibold">Testimonial List</h2>
         <!-- Button: Add new testimonial -->
         <x-button href="{{ route('testimonials.create') }}" variant="primary">
             <!-- Add icon -->
             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
             </svg>
-            Tambah Testimonial
+            Add Testimonial
         </x-button>
     </div>
     
@@ -36,6 +36,8 @@
                     ['name' => 'Type', 'key' => 't_type'],
                     ['name' => 'Description (ID)', 'key' => 't_description_id'],
                     ['name' => 'Description (EN)', 'key' => 't_description_en'],
+                    ['name' => 'Product (ID)', 'key' => 't_product_id'],
+                    ['name' => 'Product (EN)', 'key' => 't_product_en'],
                     ['name' => 'Image', 'key' => 't_image']
                 ]"
                 :sortBy="$sortBy"
@@ -53,6 +55,14 @@
                         <td class="px-5 py-4 text-center">{{ Str::limit($testimonial['t_description_id'], 50) }}</td>
                         <!-- Description in English (truncated) -->
                         <td class="px-5 py-4 text-center">{{ Str::limit($testimonial['t_description_en'], 50) }}</td>
+                        <!-- Product name in Indonesian (truncated) -->
+                        <td class="px-5 py-4 text-center">
+                            {{ !empty($testimonial['t_product_id']) ? Str::limit($testimonial['t_product_id'], 30) : '-' }}
+                        </td>
+                        <!-- Product name in English (truncated) -->
+                        <td class="px-5 py-4 text-center">
+                            {{ !empty($testimonial['t_product_en']) ? Str::limit($testimonial['t_product_en'], 30) : '-' }}
+                        </td>
                         <!-- Testimonial image -->
                         <td class="px-5 py-4 text-center">
                             @if(!empty($testimonial['t_image']))
@@ -77,7 +87,7 @@
                                     </svg>
                                 </a>
                                 <!-- Delete button (with confirmation) -->
-                                <form action="{{ route('testimonials.destroy', $testimonial['t_id']) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus testimonial ini?');">
+                                <form action="{{ route('testimonials.destroy', $testimonial['t_id']) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this testimonial?');">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="text-red-500 hover:text-red-700">
@@ -101,9 +111,9 @@
         @else
             <!-- If no testimonials exist, show message and add button -->
             <div class="py-8 text-center">
-                <p class="text-gray-400">Belum ada testimonial yang ditambahkan</p>
+                <p class="text-gray-400">No testimonials have been added yet</p>
                 <x-button href="{{ route('testimonials.create') }}" variant="primary" class="mt-4">
-                    Tambah Testimonial
+                    Add Testimonial
                 </x-button>
             </div>
         @endif
