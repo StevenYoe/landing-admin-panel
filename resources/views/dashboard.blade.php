@@ -273,8 +273,8 @@
             </x-card>
         </div>
 
-        <!-- Department, Employment, Experience Cards Row -->
-        <div class="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3 mt-6">
+        <!-- Department & Experience Cards Row -->
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-2 mt-6">
             <!-- Card 5: Total Departments -->
             <x-card class="border-l-4 border-orange-400">
                 <div class="flex items-center">
@@ -291,23 +291,7 @@
                 </div>
             </x-card>
 
-            <!-- Card 6: Total Employments -->
-            <x-card class="border-l-4 border-pink-400">
-                <div class="flex items-center">
-                    <div class="p-3 mr-4 rounded-full bg-pink-400 bg-opacity-10">
-                        <!-- Total Employments Icon -->
-                        <svg class="w-6 h-6 text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
-                        </svg>
-                    </div>
-                    <div>
-                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">Employments</p>
-                        <p class="text-lg font-semibold">{{ $totalEmployments ?? 0 }}</p>
-                    </div>
-                </div>
-            </x-card>
-
-            <!-- Card 7: Total Experiences -->
+            <!-- Card 6: Total Experiences -->
             <x-card class="border-l-4 border-slate-400">
                 <div class="flex items-center">
                     <div class="p-3 mr-4 rounded-full bg-slate-400 bg-opacity-10">

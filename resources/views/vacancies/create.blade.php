@@ -1,6 +1,6 @@
 <!--
     Add Vacancy Page
-    This Blade view provides a form for creating a new job vacancy, including title, department, employment type, experience, dates, status, and detailed descriptions.
+    This Blade view provides a form for creating a new job vacancy, including title, department, experience, dates, status, and detailed descriptions.
     Each section, form, field, and button is commented to clarify its purpose for future developers.
 -->
 @extends('layouts.app')
@@ -60,17 +60,6 @@
                         label="Department" 
                         :options="collect($departments)->pluck('da_title_en', 'da_id')->prepend('Select Department', '')" 
                         :selected="old('v_department_id')"
-                        required
-                    />
-                </div>
-                
-                <div>
-                    <!-- Employment type selection -->
-                    <x-form.select 
-                        name="v_employment_id" 
-                        label="Employment Type" 
-                        :options="collect($employments)->pluck('e_title_en', 'e_id')->prepend('Select Employment Type', '')" 
-                        :selected="old('v_employment_id')"
                         required
                     />
                 </div>

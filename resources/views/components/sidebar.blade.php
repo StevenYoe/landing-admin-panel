@@ -276,7 +276,7 @@
 
                 <!-- Vacancies Menu with Submenu -->
                 <div x-data="{ open: false }" class="space-y-1">
-                    <button @click="open = !open" class="flex items-center justify-between w-full p-2 rounded-lg hover:bg-gray-700 {{ request()->routeIs('departments.*') || request()->routeIs('employments.*') || request()->routeIs('experiences.*') || request()->routeIs('vacancies.*') ? 'bg-gray-700' : '' }}">
+                    <button @click="open = !open" class="flex items-center justify-between w-full p-2 rounded-lg hover:bg-gray-700 {{ request()->routeIs('departments.*') || request()->routeIs('experiences.*') || request()->routeIs('vacancies.*') ? 'bg-gray-700' : '' }}">
                         <div class="flex items-center">
                             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
@@ -294,13 +294,6 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
                             </svg>
                             <span :class="sidebarOpen ? 'opacity-100' : 'opacity-0'">Departments</span>
-                        </a>
-                        <!-- Employments -->
-                        <a href="{{ route('employments.index') }}" class="flex items-center p-2 rounded-lg hover:bg-gray-700 {{ request()->routeIs('employments.*') ? 'bg-gray-700' : '' }}">
-                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
-                            </svg>
-                            <span :class="sidebarOpen ? 'opacity-100' : 'opacity-0'">Employments</span>
                         </a>
                         <!-- Experiences -->
                         <a href="{{ route('experiences.index') }}" class="flex items-center p-2 rounded-lg hover:bg-gray-700 {{ request()->routeIs('experiences.*') ? 'bg-gray-700' : '' }}">

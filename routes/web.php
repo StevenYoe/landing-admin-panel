@@ -26,7 +26,6 @@ use App\Http\Controllers\CompanyProfileController;
 use App\Http\Controllers\WhyPazarController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\DepartmentController;
-use App\Http\Controllers\EmploymentController;
 use App\Http\Controllers\ExperienceController;
 use App\Http\Controllers\VacancyController;
 use App\Http\Controllers\WorkAtPazarController;
@@ -96,7 +95,6 @@ Route::middleware([\App\Http\Middleware\ApiAuthentication::class])->group(functi
     Route::middleware('access:Human Resources')->group(function () {
         // Resource routes for HR modules
         Route::resource('departments', DepartmentController::class);
-        Route::resource('employments', EmploymentController::class);
         Route::resource('experiences', ExperienceController::class);
         Route::resource('vacancies', VacancyController::class);
         Route::resource('workatpazars', WorkAtPazarController::class);

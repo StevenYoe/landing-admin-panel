@@ -76,11 +76,6 @@
                         <h4 class="text-sm font-medium text-gray-400">Department</h4>
                         <p>{{ $vacancy['department_name'] ?? '-' }}</p>
                     </div>
-                    <!-- Employment Type -->
-                    <div>
-                        <h4 class="text-sm font-medium text-gray-400">Employment Type</h4>
-                        <p>{{ $vacancy['employment_name'] ?? '-' }}</p>
-                    </div>
                     <!-- Experience Level -->
                     <div>
                         <h4 class="text-sm font-medium text-gray-400">Experience Level</h4>

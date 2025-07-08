@@ -1,7 +1,7 @@
 <?php
 // VacancyController manages CRUD operations for vacancies.
 // It handles listing, creating, updating, showing, and deleting vacancy records via the CRUD API.
-// Also manages filter options for departments, employments, and experiences, and processes related data for display.
+// Also manages filter options for departments, and experiences, and processes related data for display.
 
 namespace App\Http\Controllers;
 
@@ -24,7 +24,6 @@ class VacancyController extends BaseController
             'per_page' => $request->input('per_page', 10),
             'page' => $request->input('page', 1),
             'department_id' => $request->input('department_id'),
-            'employment_id' => $request->input('employment_id'),
             'experience_id' => $request->input('experience_id'),
             'is_active' => $request->input('is_active', ''),
             'is_urgent' => $request->input('is_urgent', '')
@@ -34,9 +33,6 @@ class VacancyController extends BaseController
         $departmentsResponse = $this->crudApiGet('/departments/all');
         $departments = $departmentsResponse['success'] ? $departmentsResponse['data'] : [];
         
-        $employmentsResponse = $this->crudApiGet('/employments/all');
-        $employments = $employmentsResponse['success'] ? $employmentsResponse['data'] : [];
-        
         $experiencesResponse = $this->crudApiGet('/experiences/all');
         $experiences = $experiencesResponse['success'] ? $experiencesResponse['data'] : [];
         
@@ -44,7 +40,7 @@ class VacancyController extends BaseController
         $response = $this->crudApiGet('/vacancies', $params);
         
         if (!isset($response['success']) || !$response['success']) {
-            return view('vacancies.index', compact('departments', 'employments', 'experiences'))
+            return view('vacancies.index', compact('departments', 'experiences'))
                 ->with('error', $response['message'] ?? 'Failed to fetch vacancies');
         }
         
@@ -57,16 +53,6 @@ class VacancyController extends BaseController
                 $vacancy['department_name'] = $vacancy['department']['da_title_en'] ?? '-';
             } else {
                 $vacancy['department_name'] = '-';
-            }
-        }
-        
-        // Process vacancy data to ensure category_name is accessible
-        foreach ($vacancies as &$vacancy) {
-            // Check if category data exists in the response and set category_name
-            if (isset($vacancy['employment']) && is_array($vacancy['employment'])) {
-                $vacancy['employment_name'] = $vacancy['employment']['e_title_en'] ?? '-';
-            } else {
-                $vacancy['employment_name'] = '-';
             }
         }
         
@@ -101,7 +87,6 @@ class VacancyController extends BaseController
         $sortBy = $params['sort_by'];
         $sortOrder = $params['sort_order'];
         $departmentId = $params['department_id'];
-        $employmentId = $params['employment_id'];
         $experienceId = $params['experience_id'];
         $isActive = $params['is_active'];
         $isUrgent = $params['is_urgent'];
@@ -112,10 +97,8 @@ class VacancyController extends BaseController
             'sortBy', 
             'sortOrder',
             'departments',
-            'employments',
             'experiences',
             'departmentId',
-            'employmentId',
             'experienceId',
             'isActive',
             'isUrgent'
@@ -124,7 +107,7 @@ class VacancyController extends BaseController
     
     /**
      * Show the form for creating a new vacancy.
-     * Fetches dropdown options for departments, employments, and experiences.
+     * Fetches dropdown options for departments, and experiences.
      *
      * @return \Illuminate\View\View
      */
@@ -134,13 +117,10 @@ class VacancyController extends BaseController
         $departmentsResponse = $this->crudApiGet('/departments/all');
         $departments = $departmentsResponse['success'] ? $departmentsResponse['data'] : [];
         
-        $employmentsResponse = $this->crudApiGet('/employments/all');
-        $employments = $employmentsResponse['success'] ? $employmentsResponse['data'] : [];
-        
         $experiencesResponse = $this->crudApiGet('/experiences/all');
         $experiences = $experiencesResponse['success'] ? $experiencesResponse['data'] : [];
         
-        return view('vacancies.create', compact('departments', 'employments', 'experiences'));
+        return view('vacancies.create', compact('departments', 'experiences'));
     }
     
     /**
@@ -157,7 +137,6 @@ class VacancyController extends BaseController
             'v_title_id' => 'required|string|max:255',
             'v_title_en' => 'required|string|max:255',
             'v_department_id' => 'required|integer',
-            'v_employment_id' => 'required|integer',
             'v_experience_id' => 'required|integer',
             'v_type' => 'nullable|string|max:50',
             'v_description_id' => 'required|string',
@@ -222,13 +201,6 @@ class VacancyController extends BaseController
         } else {
             $vacancy['department_name'] = '-';
         }
-
-        // Check if category data exists in the response and set category_name
-        if (isset($vacancy['employment']) && is_array($vacancy['employment'])) {
-            $vacancy['employment_name'] = $vacancy['employment']['e_title_en'] ?? '-';
-        } else {
-            $vacancy['employment_name'] = '-';
-        }
         
         // Check if category data exists in the response and set category_name
         if (isset($vacancy['experience']) && is_array($vacancy['experience'])) {
@@ -262,13 +234,10 @@ class VacancyController extends BaseController
         $departmentsResponse = $this->crudApiGet('/departments/all');
         $departments = $departmentsResponse['success'] ? $departmentsResponse['data'] : [];
         
-        $employmentsResponse = $this->crudApiGet('/employments/all');
-        $employments = $employmentsResponse['success'] ? $employmentsResponse['data'] : [];
-        
         $experiencesResponse = $this->crudApiGet('/experiences/all');
         $experiences = $experiencesResponse['success'] ? $experiencesResponse['data'] : [];
         
-        return view('vacancies.edit', compact('vacancy', 'departments', 'employments', 'experiences'));
+        return view('vacancies.edit', compact('vacancy', 'departments', 'experiences'));
     }
     
     /**
@@ -297,7 +266,6 @@ class VacancyController extends BaseController
             'v_title_id' => 'required|string|max:255',
             'v_title_en' => 'required|string|max:255',
             'v_department_id' => 'required|integer',
-            'v_employment_id' => 'required|integer',
             'v_experience_id' => 'required|integer',
             'v_type' => 'nullable|string|max:50',
             'v_description_id' => 'required|string',

@@ -52,7 +52,6 @@ class DashboardController extends BaseController
             $data['activeVacancies'] = $vacancyResponse['data']['active_vacancies'] ?? 0;
             $data['urgentVacancies'] = $vacancyResponse['data']['urgent_vacancies'] ?? 0;
             $data['totalDepartments'] = $vacancyResponse['data']['total_departments'] ?? 0;
-            $data['totalEmployments'] = $vacancyResponse['data']['total_employments'] ?? 0;
             $data['totalExperiences'] = $vacancyResponse['data']['total_experiences'] ?? 0;
             $data['latestVacancies'] = $vacancyResponse['data']['latest_vacancies'] ?? [];
             $data['vacanciesByDepartment'] = $vacancyResponse['data']['vacancies_by_department'] ?? [];

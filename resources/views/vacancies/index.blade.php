@@ -24,7 +24,7 @@
         </x-button>
     </div>
     
-    <!-- Filter/Search Form: Allows filtering vacancies by department, employment, experience, status, and urgency -->
+    <!-- Filter/Search Form: Allows filtering vacancies by department, experience, status, and urgency -->
     <x-card class="mb-6">
         <form action="{{ route('vacancies.index') }}" method="GET" class="space-y-4">
             <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
@@ -35,15 +35,6 @@
                         label="Department" 
                         :options="collect($departments)->pluck('da_title_en', 'da_id')->prepend('All Departments', '')" 
                         :selected="$departmentId"
-                    />
-                </div>
-                <!-- Employment Type Filter Dropdown -->
-                <div>
-                    <x-form.select 
-                        name="employment_id" 
-                        label="Employment Type" 
-                        :options="collect($employments)->pluck('e_title_en', 'e_id')->prepend('All Employment Types', '')" 
-                        :selected="$employmentId"
                     />
                 </div>
                 <!-- Experience Level Filter Dropdown -->
@@ -97,7 +88,6 @@
                         ['name' => 'ID', 'key' => 'v_id'],
                         ['name' => 'Title', 'key' => 'v_title_en'],
                         ['name' => 'Department', 'key' => 'department_name'],
-                        ['name' => 'Employment', 'key' => 'employment_name'],
                         ['name' => 'Experience', 'key' => 'experience_name'],
                         ['name' => 'Posted Date', 'key' => 'v_posted_date'],
                         ['name' => 'Status', 'key' => 'v_is_active']
@@ -115,8 +105,6 @@
                             </td>
                             <!-- Department Name -->
                             <td class="px-5 py-4">{{ $vacancy['department_name'] ?? '-' }}</td>
-                            <!-- Employment Name -->
-                            <td class="px-5 py-4">{{ $vacancy['employment_name'] ?? '-' }}</td>
                             <!-- Experience Name -->
                             <td class="px-5 py-4">{{ $vacancy['experience_name'] ?? '-' }}</td>
                             <!-- Posted Date -->

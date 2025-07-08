@@ -62,16 +62,6 @@
                         required
                     />
                 </div>
-                <!-- Employment Type Dropdown -->
-                <div>
-                    <x-form.select 
-                        name="v_employment_id" 
-                        label="Employment Type" 
-                        :options="collect($employments)->pluck('e_title_en', 'e_id')->prepend('Select Employment Type', '')" 
-                        :selected="old('v_employment_id', $vacancy['v_employment_id'])"
-                        required
-                    />
-                </div>
                 <!-- Experience Level Dropdown -->
                 <div>
                     <x-form.select 
