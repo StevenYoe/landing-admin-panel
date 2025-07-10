@@ -15,11 +15,11 @@
         $userDivision = strtolower(trim(Session::get('division', '')));
         
         $isSuperAdmin = in_array('superadmin', $userRoles);
-        $isMarketingOrSocial = in_array($userDivision, ['marketing', 'social media']);
+        $isMarketingOrSales = in_array($userDivision, ['marketing', 'sales']);
         $isHumanResources = ($userDivision === 'human resources');
     @endphp
 
-    @if($isSuperAdmin || $isMarketingOrSocial)
+    @if($isSuperAdmin || $isMarketingOrSales)
         <!-- First Cards Row: Certifications, Histories, Why Pazars -->
         <div class="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
             <!-- Card 1: Total Certifications -->
@@ -309,7 +309,7 @@
         </div>
     @endif
 
-    @if($isSuperAdmin || $isMarketingOrSocial)
+    @if($isSuperAdmin || $isMarketingOrSales)
         <!-- Table Section: Latest Products, Products by Category, Latest Recipes, Recipes by Category -->
         <div class="grid grid-cols-1 gap-6 mt-6 lg:grid-cols-2">
             <!-- Table 1: Latest Products -->

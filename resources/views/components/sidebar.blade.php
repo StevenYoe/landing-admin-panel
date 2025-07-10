@@ -18,7 +18,7 @@
         $userRoles = array_map('strtolower', (array)Session::get('roles', []));
         $userDivision = strtolower(trim(Session::get('division', '')));
         $isSuperAdmin = in_array('superadmin', $userRoles);
-        $isMarketingOrSocial = in_array($userDivision, ['marketing', 'social media']);
+        $isMarketingOrSales = in_array($userDivision, ['marketing', 'sales']);
         $isHumanResources = ($userDivision === 'human resources');
     @endphp
     
@@ -33,8 +33,8 @@
                 <span :class="sidebarOpen ? 'opacity-100' : 'opacity-0'">Dashboard</span>
             </a>
             
-            <!-- Conditional menus for Superadmin, Marketing, Social Media -->
-            @if($isSuperAdmin || $isMarketingOrSocial)
+            <!-- Conditional menus for Superadmin, Marketing, sales -->
+            @if($isSuperAdmin || $isMarketingOrSales)
                 <!-- Layout Menu with Submenu -->
                 <div x-data="{ open: false }" class="space-y-1">
                     <button @click="open = !open" class="flex items-center justify-between w-full p-2 rounded-lg hover:bg-gray-700 

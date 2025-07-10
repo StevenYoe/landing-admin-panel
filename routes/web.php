@@ -54,9 +54,9 @@ Route::middleware([\App\Http\Middleware\ApiAuthentication::class])->group(functi
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     // ---------------------------------------------------
-    // GROUP 1: For Superadmin, Marketing, and Social Media
+    // GROUP 1: For Superadmin, Marketing, and Sales
     // ---------------------------------------------------
-    Route::middleware('access:Marketing,Social Media')->group(function () {
+    Route::middleware('access:Marketing,Sales')->group(function () {
         // Resource routes for marketing/social modules
         Route::resource('headers', HeaderController::class);
         Route::resource('footers', FooterController::class);
