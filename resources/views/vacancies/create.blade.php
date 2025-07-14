@@ -76,13 +76,18 @@
                 </div>
                 
                 <div>
-                    <!-- Type (optional) -->
-                    <x-form.input 
+                    <!-- Type selection dropdown -->
+                    <x-form.select 
                         name="v_type" 
                         label="Type (Optional)" 
-                        placeholder="E.g., Remote, Onsite, Hybrid" 
-                        :value="old('v_type')"
-                        helper="Maximum 50 characters"
+                        :options="[
+                            '' => 'Select Type',
+                            'Onsite' => 'Onsite',
+                            'Hybrid' => 'Hybrid',
+                            'Remote' => 'Remote'
+                        ]"
+                        :selected="old('v_type')"
+                        helper="Select work arrangement type"
                     />
                 </div>
                 
@@ -145,7 +150,7 @@
                         placeholder="Enter job description in Indonesian" 
                         :value="old('v_description_id')"
                         rows="5"
-                        required
+                        helper="Optional field"
                     />
                 </div>
                 
@@ -157,7 +162,7 @@
                         placeholder="Enter job description in English" 
                         :value="old('v_description_en')"
                         rows="5"
-                        required
+                        helper="Optional field"
                     />
                 </div>
                 
@@ -169,7 +174,7 @@
                         placeholder="Enter job requirement in Indonesian" 
                         :value="old('v_requirement_id')"
                         rows="5"
-                        required
+                        helper="Optional field"
                     />
                 </div>
                 
@@ -181,7 +186,7 @@
                         placeholder="Enter job requirement in English" 
                         :value="old('v_requirement_en')"
                         rows="5"
-                        required
+                        helper="Optional field"
                     />
                 </div>
                 
@@ -193,7 +198,7 @@
                         placeholder="Enter job responsibilities in Indonesian" 
                         :value="old('v_responsibilities_id')"
                         rows="5"
-                        required
+                        helper="Optional field"
                     />
                 </div>
                 
@@ -205,7 +210,7 @@
                         placeholder="Enter job responsibilities in English" 
                         :value="old('v_responsibilities_en')"
                         rows="5"
-                        required
+                        helper="Optional field"
                     />
                 </div>
             </div>

@@ -72,14 +72,19 @@
                         required
                     />
                 </div>
-                <!-- Type Field (Optional) -->
+                <!-- Type Selection Dropdown -->
                 <div>
-                    <x-form.input 
+                    <x-form.select 
                         name="v_type" 
                         label="Type (Optional)" 
-                        placeholder="E.g., Remote, Onsite, Hybrid" 
-                        :value="old('v_type', $vacancy['v_type'])"
-                        helper="Maximum 50 characters"
+                        :options="[
+                            '' => 'Select Type',
+                            'Onsite' => 'Onsite',
+                            'Hybrid' => 'Hybrid',
+                            'Remote' => 'Remote'
+                        ]"
+                        :selected="old('v_type', $vacancy['v_type'])"
+                        helper="Select work arrangement type"
                     />
                 </div>
                 <!-- Posted Date Field (Optional) -->
@@ -138,7 +143,7 @@
                         placeholder="Enter job description in Indonesian" 
                         :value="old('v_description_id', $vacancy['v_description_id'])"
                         rows="5"
-                        required
+                        helper="Optional field"
                     />
                 </div>
                 <!-- Description in English -->
@@ -149,7 +154,7 @@
                         placeholder="Enter job description in English" 
                         :value="old('v_description_en', $vacancy['v_description_en'])"
                         rows="5"
-                        required
+                        helper="Optional field"
                     />
                 </div>
                 <!-- Requirement in Indonesian -->
@@ -160,7 +165,7 @@
                         placeholder="Enter job requirement in Indonesian" 
                         :value="old('v_requirement_id', $vacancy['v_requirement_id'])"
                         rows="5"
-                        required
+                        helper="Optional field"
                     />
                 </div>
                 <!-- Requirement in English -->
@@ -171,7 +176,7 @@
                         placeholder="Enter job requirement in English" 
                         :value="old('v_requirement_en', $vacancy['v_requirement_en'])"
                         rows="5"
-                        required
+                        helper="Optional field"
                     />
                 </div>
                 <!-- Responsibilities in Indonesian -->
@@ -182,7 +187,7 @@
                         placeholder="Enter job responsibilities in Indonesian" 
                         :value="old('v_responsibilities_id', $vacancy['v_responsibilities_id'])"
                         rows="5"
-                        required
+                        helper="Optional field"
                     />
                 </div>
                 <!-- Responsibilities in English -->
@@ -193,7 +198,7 @@
                         placeholder="Enter job responsibilities in English" 
                         :value="old('v_responsibilities_en', $vacancy['v_responsibilities_en'])"
                         rows="5"
-                        required
+                        helper="Optional field"
                     />
                 </div>
             </div>
