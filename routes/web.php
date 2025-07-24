@@ -76,7 +76,7 @@ Route::middleware([\App\Http\Middleware\ApiAuthentication::class])->group(functi
         Route::get('/recipes/category/{categoryId}', [RecipeController::class, 'getByCategory'])->name('recipes.by-category');
         Route::get('/recipes/{recipeId}/details/create', [RecipeDetailController::class, 'create'])->name('recipedetails.create');
         Route::post('/recipes/{recipeId}/details', [RecipeDetailController::class, 'store'])->name('recipedetails.store');
-        Route::get('/recipes/{recipeDetailId}/edit', [RecipeDetailController::class, 'edit'])->name('recipedetails.edit');
+        Route::get('/recipes/{recipeDetailId}/details/edit', [RecipeDetailController::class, 'edit'])->name('recipedetails.edit');
         Route::put('/recipedetails/{id}', [RecipeDetailController::class, 'update'])->name('recipedetails.update');
         Route::delete('/recipes/{recipeId}/details/{id}', [RecipeDetailController::class, 'destroy'])->name('recipedetails.destroy');
         Route::resource('histories', HistoryController::class);
